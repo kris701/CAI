@@ -85,7 +85,7 @@ void showMenu()
 {
 	if (currentMenu == NULL)
 	{
-		s_printHeader(F("Main Menu"));
+		s_printHeader("Main Menu");
 		for (int i = 0; i < BASE_MENU_LENGTH; i++)
 		{
 			s_printListItem(menuList[i]->name, i == menuIndex);

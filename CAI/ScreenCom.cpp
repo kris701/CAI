@@ -1,11 +1,11 @@
 #include "ScreenCom.h"
 
-void s_printHeader(String text) {
+void s_printHeader(const char* text) {
 	Serial.print(F("Titel: "));
 	Serial.println(text);
 }
 
-void s_printListItem(String text, bool highLight) {
+void s_printListItem(const char* text, bool highLight) {
 	if (highLight)
 		Serial.print(F(":=> "));
 	else

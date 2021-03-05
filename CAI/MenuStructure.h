@@ -5,10 +5,10 @@
 
 class MenuItem {
 public:
-	String name;
+	const char* name;
 	void(*command)(void);
 
-	MenuItem(String name, void(*command)(void)) : name(name), command(command) {}
+	MenuItem(const char* name, void(*command)(void)) : name(name), command(command) {}
 	MenuItem() : name() {}
 
 	void MenuItem::printItem(bool isSelected);
@@ -18,10 +18,10 @@ class Menu {
 private:
 	MenuItem* menuItems;
 public:
-	String name;
+	const char* name;
 	int menuItemsCount;
 
-	Menu::Menu(String name, MenuItem* menuItems, int menuItemsCount) : name(name), menuItems(menuItems), menuItemsCount(menuItemsCount) {}
+	Menu::Menu(const char* name, MenuItem* menuItems, int menuItemsCount) : name(name), menuItems(menuItems), menuItemsCount(menuItemsCount) {}
 	Menu::Menu() : name(), menuItems(NULL), menuItemsCount(0) {};
 
 	void Menu::setMenuItems(MenuItem* _menuItems, int _menuItemsCount);
