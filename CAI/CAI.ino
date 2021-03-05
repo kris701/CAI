@@ -1,4 +1,6 @@
-#include "CAIHeader.h"
+#include "Classes.h"
+#include "RotaryButtonDriver.h"
+#include "ScreenDriver.h"
 
 #pragma region Setup
 
@@ -31,11 +33,9 @@ void setup()
 {
 	Serial.begin(115200);
 
-	attachInterrupt(digitalPinToInterrupt(Interface_InrementRotationPin), IncrementMenuIndex, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(Interface_DecrementRotationPin), DecrementMenuIndex, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(Interface_EnterPin), EnterMenu, CHANGE);
+	setupRotaryButton(IncrementMenuIndex, DecrementMenuIndex, EnterMenu);
 
-	ShowMenu();
+	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 
 	EnterMenu();
 }
@@ -44,65 +44,23 @@ void loop() {}
 
 void IncrementMenuIndex()
 {
-	menuIndex++;
-	if (menuIndex > MENU_TREE_SIZE)
-		menuIndex = 0;
-	while (menuTree[menuIndex].parentID != menuTree[currentMenuIndex].menuID)
-	{
-		menuIndex++;
-		if (menuIndex > MENU_TREE_SIZE)
-			menuIndex = 0;
-	}
-
-	ShowMenu();
+	incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
 void DecrementMenuIndex()
 {
-	menuIndex--;
-	if (menuIndex < 0)
-		menuIndex = MENU_TREE_SIZE - 1;
-	while (menuTree[menuIndex].parentID != menuTree[currentMenuIndex].menuID)
-	{
-		menuIndex--;
-		if (menuIndex < 0)
-			menuIndex = MENU_TREE_SIZE - 1;
-	}
-
-	ShowMenu();
+	decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
 void EnterMenu()
 {
-	if (menuTree[menuIndex].hasChildren)
-	{
-		currentMenuIndex = menuIndex;
-		menuIndex++;
-	}
-	else
-		menuTree[menuIndex].command();
-
-	ShowMenu();
+	enterMenu(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
-void ShowMenu() {
-	for (int i = 0; i < MENU_TREE_SIZE; i++)
-	{
-		if (i == currentMenuIndex)
-		{
-			Serial.print(F("Titel: "));
-			Serial.println(menuTree[i].name);
-		}
-		if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
-		{
-			if (i == menuIndex)
-				Serial.print(F(":=> "));
-			else
-				Serial.print(F(":   "));
-			Serial.println(menuTree[i].name);
-		}
-	}
-}
+
 
 void backMethod()
 {
