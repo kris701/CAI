@@ -7,7 +7,7 @@ void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*
 	attachInterrupt(digitalPinToInterrupt(Interface_EnterPin), enterFunc, CHANGE);
 }
 
-void incrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex)
+void incrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	incrememtIndex(treeSize, menuIndex);
 	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
@@ -16,7 +16,7 @@ void incrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMen
 	}
 }
 
-void decrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex)
+void decrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	decrememtIndex(treeSize, menuIndex);
 	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
@@ -25,7 +25,7 @@ void decrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMen
 	}
 }
 
-void enterMenu(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex)
+void enterMenu(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	if (menuTree[*menuIndex].hasChildren)
 	{
@@ -36,16 +36,18 @@ void enterMenu(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, i
 		menuTree[*menuIndex].command();
 }
 
-void incrememtIndex(int treeSize, int* menuIndex)
+void incrememtIndex(uint8_t treeSize, uint8_t* menuIndex)
 {
-	(*menuIndex)++;
-	if (*menuIndex > treeSize)
+	if (*menuIndex == treeSize)
 		*menuIndex = 0;
+	else
+		(*menuIndex)++;
 }
 
-void decrememtIndex(int treeSize, int* menuIndex)
+void decrememtIndex(uint8_t treeSize, uint8_t* menuIndex)
 {
-	(*menuIndex)--;
-	if (*menuIndex < 0)
+	if (*menuIndex == 0)
 		*menuIndex = treeSize - 1;
+	else
+		(*menuIndex)--;
 }

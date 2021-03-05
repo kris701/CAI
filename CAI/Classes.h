@@ -13,12 +13,12 @@
 class MenuItem {
 public:
 	const bool hasChildren;
-	const int menuID;
-	const int parentID;
+	const uint8_t menuID;
+	const uint8_t parentID;
 	const char* name;
 	void(*command)(void);
 
-	MenuItem(const bool hasChildren, const int menuID, const int parentID, const char* name, void(*command)(void)) : hasChildren(hasChildren), menuID(menuID), parentID(parentID), name(name), command(command) {}
+	MenuItem(const bool hasChildren, const uint8_t menuID, const uint8_t parentID, const char* name, void(*command)(void)) : hasChildren(hasChildren), menuID(menuID), parentID(parentID), name(name), command(command) {}
 };
 
 #endif

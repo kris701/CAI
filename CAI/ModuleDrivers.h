@@ -9,10 +9,10 @@
 	#include "WProgram.h"
 #endif
 
-void digitalSwitch(int pin, bool state);
-void analogSwitch(int pin, byte value);
-void motorControllerDigital(int pinA, int pinB, bool valueA, bool valueB);
-void motorControllerAnalog(int pinA, int pinB, byte valueA, byte valueB);
+void digitalSwitch(uint8_t pin, bool state);
+void analogSwitch(uint8_t pin, uint8_t value);
+void motorControllerDigital(uint8_t pinA, uint8_t pinB, bool valueA, bool valueB);
+void motorControllerAnalog(uint8_t pinA, uint8_t pinB, uint8_t valueA, uint8_t valueB);
 
 
 

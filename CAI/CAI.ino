@@ -1,25 +1,8 @@
-#pragma region Libraries
-
-#include "ModuleDrivers.h"
-#include <splash.h>
-#include <Adafruit_SSD1306.h>
-#include <gfxfont.h>
-#include <Adafruit_SPITFT_Macros.h>
-#include <Adafruit_SPITFT.h>
-#include <Adafruit_GrayOLED.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SPIDevice.h>
-#include <Adafruit_I2CRegister.h>
-#include <Adafruit_I2CDevice.h>
-#include <Adafruit_BusIO_Register.h>
-#include "Classes.h"
-#include "RotaryButtonDriver.h"
-#include "ScreenDriver.h"
-
-#pragma endregion
+#include "CAI.h"
 
 #pragma region Setup
 
+#define SERIAL_PRINT true
 #define MENU_TREE_SIZE 9
 
 void setupPins() {
@@ -44,8 +27,8 @@ const MenuItem menuTree[MENU_TREE_SIZE] = {
 			{false, -1,2, "Back", backMethod},
 };
 
-int menuIndex = 1;
-int currentMenuIndex = 0;
+uint8_t menuIndex = 1;
+uint8_t currentMenuIndex = 0;
 
 #pragma endregion
 
@@ -53,8 +36,9 @@ int currentMenuIndex = 0;
 
 void setup()
 {
+#if SERIAL_PRINT
 	Serial.begin(115200);
-
+#endif
 	setupPins();
 
 	setupRotaryButton(IncrementMenuIndex, DecrementMenuIndex, EnterMenu);
@@ -104,22 +88,30 @@ void backMethod()
 
 void turnLEDON()
 {
+#if SERIAL_PRINT
 	Serial.println(F("LED ON!"));
+#endif
 }
 
 void turnLEDOFF()
 {
+#if SERIAL_PRINT
 	Serial.println(F("LED OFF!"));
+#endif
 }
 
 void turnFANON()
 {
+#if SERIAL_PRINT
 	Serial.println(F("FAN ON!"));
+#endif
 }
 
 void turnFANOFF()
 {
+#if SERIAL_PRINT
 	Serial.println(F("FAN OFF!"));
+#endif
 }
 
 

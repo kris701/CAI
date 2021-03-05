@@ -9,7 +9,7 @@
 	#include "WProgram.h"
 #endif
 
-#if not defined(_CLASSES_h) 
+#ifndef _CLASSES_h
 	#include "Classes.h"
 #endif
 
@@ -17,12 +17,12 @@
 #define Interface_DecrementRotationPin 6
 #define Interface_EnterPin 7
 
-void incrememtIndex(int treeSize, int* menuIndex);
-void decrememtIndex(int treeSize, int* menuIndex);
+void incrememtIndex(uint8_t treeSize, uint8_t* menuIndex);
+void decrememtIndex(uint8_t treeSize, uint8_t* menuIndex);
 void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)());
-void incrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex);
-void decrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex);
-void enterMenu(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex);
+void incrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+void decrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+void enterMenu(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 
 #endif
 
