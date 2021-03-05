@@ -7,6 +7,7 @@
 #include "WProgram.h"
 #endif
 
+#define SERIAL_PRINT true
 
 #ifndef _SCREENLIB
 	#define _SCREENLIB
@@ -23,8 +24,8 @@
 	#include <Adafruit_BusIO_Register.h>
 #endif
 
-#include "ModuleDrivers.h"
 #include "Classes.h"
+#include "ModuleDrivers.h"
 #include "RotaryButtonDriver.h"
 #include "ScreenDriver.h"
 

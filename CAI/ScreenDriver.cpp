@@ -74,6 +74,6 @@ void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize)
 
 void printIntro() {
 	printText(F("CAI"), 5, 5, 4, true);
-	delay(2000);
+	//delay(2000);
 	display.clearDisplay();
 }

@@ -2,7 +2,6 @@
 
 #pragma region Setup
 
-#define SERIAL_PRINT true
 #define MENU_TREE_SIZE 9
 
 void setupPins() {
@@ -38,7 +37,9 @@ void setup()
 {
 #if SERIAL_PRINT
 	Serial.begin(115200);
+	Serial.println(F("Starting..."));
 #endif
+
 	setupPins();
 
 	setupRotaryButton(IncrementMenuIndex, DecrementMenuIndex, EnterMenu);
