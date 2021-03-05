@@ -17,6 +17,8 @@
 #define Interface_DecrementRotationPin 6
 #define Interface_EnterPin 7
 
+void incrememtIndex(int treeSize, int* menuIndex);
+void decrememtIndex(int treeSize, int* menuIndex);
 void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)());
 void incrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex);
 void decrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex);

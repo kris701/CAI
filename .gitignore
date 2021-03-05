@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Others
+CAI/Libraries
+CAI/__vm
+CAI/Debug

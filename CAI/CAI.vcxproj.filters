@@ -30,12 +30,18 @@
     <ClInclude Include="RotaryButtonDriver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleDrivers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ScreenDriver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RotaryButtonDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleDrivers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

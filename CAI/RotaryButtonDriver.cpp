@@ -1,7 +1,3 @@
-// 
-// 
-// 
-
 #include "RotaryButtonDriver.h"
 
 void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)())
@@ -13,27 +9,19 @@ void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*
 
 void incrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex)
 {
-	(*menuIndex)++;
-	if (*menuIndex > treeSize)
-		*menuIndex = 0;
+	incrememtIndex(treeSize, menuIndex);
 	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
 	{
-		(*menuIndex)++;
-		if (*menuIndex > treeSize)
-			*menuIndex = 0;
+		incrememtIndex(treeSize, menuIndex);
 	}
 }
 
 void decrementMenuIndex(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, int* menuIndex)
 {
-	(*menuIndex)--;
-	if (*menuIndex < 0)
-		*menuIndex = treeSize - 1;
+	decrememtIndex(treeSize, menuIndex);
 	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
 	{
-		(*menuIndex)--;
-		if (*menuIndex < 0)
-			*menuIndex = treeSize - 1;
+		decrememtIndex(treeSize, menuIndex);
 	}
 }
 
@@ -46,4 +34,18 @@ void enterMenu(const MenuItem menuTree[], int treeSize, int* currentMenuIndex, i
 	}
 	else
 		menuTree[*menuIndex].command();
+}
+
+void incrememtIndex(int treeSize, int* menuIndex)
+{
+	(*menuIndex)++;
+	if (*menuIndex > treeSize)
+		*menuIndex = 0;
+}
+
+void decrememtIndex(int treeSize, int* menuIndex)
+{
+	(*menuIndex)--;
+	if (*menuIndex < 0)
+		*menuIndex = treeSize - 1;
 }
