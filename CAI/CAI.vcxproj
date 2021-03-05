@@ -106,15 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAIHeader.h" />
-    <ClInclude Include="Configuration.h" />
-    <ClInclude Include="MenuStructure.h" />
-    <ClInclude Include="ScreenCom.h" />
     <ClInclude Include="__vm\.CAI.vsarduino.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Configuration.cpp" />
-    <ClCompile Include="MenuStructure.cpp" />
-    <ClCompile Include="ScreenCom.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,20 +2,28 @@
 
 #pragma region Setup
 
-Menu* menuList[BASE_MENU_LENGTH];
-Menu* currentMenu = NULL;
-int listLength = 0;
-int menuIndex = 0;
+#define MENU_TREE_SIZE 9
 
-void Menu::backMenu() {
-	listLength = BASE_MENU_LENGTH;
-	currentMenu = NULL;
-}
+void turnLEDON();
+void turnLEDOFF();
+void turnFANON();
+void turnFANOFF();
+void backMethod();
 
-void backMethod()
-{
-	currentMenu->backMenu();
-}
+const MenuItem menuTree[MENU_TREE_SIZE] = {
+	{true, 0,-1, "Main Menu", NULL},
+		{true, 1,0, "LED", NULL},
+			{false, -1,1, "On", turnLEDON},
+			{false, -1,1, "Off", turnLEDOFF},
+			{false, -1,1, "Back", backMethod},
+		{true, 2,0, "FAN", NULL},
+			{false, -1,2, "On", turnFANON},
+			{false, -1,2, "Off", turnFANOFF},
+			{false, -1,2, "Back", backMethod},
+};
+
+int menuIndex = 1;
+int currentMenuIndex = 0;
 
 #pragma endregion
 
@@ -23,27 +31,11 @@ void setup()
 {
 	Serial.begin(115200);
 
-	getConfiguration(menuList);
-	ConfigureMenu(menuList);
-
-	listLength = BASE_MENU_LENGTH;
-
 	attachInterrupt(digitalPinToInterrupt(Interface_InrementRotationPin), IncrementMenuIndex, CHANGE);
 	attachInterrupt(digitalPinToInterrupt(Interface_DecrementRotationPin), DecrementMenuIndex, CHANGE);
 	attachInterrupt(digitalPinToInterrupt(Interface_EnterPin), EnterMenu, CHANGE);
 
-	showMenu();
-
-	IncrementMenuIndex();
-
-	EnterMenu();
-
-	IncrementMenuIndex();
-
-	EnterMenu();
-
-	IncrementMenuIndex();
-	IncrementMenuIndex();
+	ShowMenu();
 
 	EnterMenu();
 }
@@ -53,44 +45,99 @@ void loop() {}
 void IncrementMenuIndex()
 {
 	menuIndex++;
-	if (menuIndex >= listLength)
+	if (menuIndex > MENU_TREE_SIZE)
 		menuIndex = 0;
-	showMenu();
+	while (menuTree[menuIndex].parentID != menuTree[currentMenuIndex].menuID)
+	{
+		menuIndex++;
+		if (menuIndex > MENU_TREE_SIZE)
+			menuIndex = 0;
+	}
+
+	ShowMenu();
 }
 
 void DecrementMenuIndex()
 {
 	menuIndex--;
 	if (menuIndex < 0)
-		menuIndex = listLength - 1;
-	showMenu();
+		menuIndex = MENU_TREE_SIZE - 1;
+	while (menuTree[menuIndex].parentID != menuTree[currentMenuIndex].menuID)
+	{
+		menuIndex--;
+		if (menuIndex < 0)
+			menuIndex = MENU_TREE_SIZE - 1;
+	}
+
+	ShowMenu();
 }
 
 void EnterMenu()
 {
-	if (currentMenu == NULL)
+	if (menuTree[menuIndex].hasChildren)
 	{
-		currentMenu = menuList[menuIndex];
-		listLength = currentMenu->menuItemsCount;
+		currentMenuIndex = menuIndex;
+		menuIndex++;
 	}
 	else
-	{
-		currentMenu->runCommand(menuIndex);
-	}
-	menuIndex = 0;
-	showMenu();
+		menuTree[menuIndex].command();
+
+	ShowMenu();
 }
 
-void showMenu() 
-{
-	if (currentMenu == NULL)
+void ShowMenu() {
+	for (int i = 0; i < MENU_TREE_SIZE; i++)
 	{
-		s_printHeader("Main Menu");
-		for (int i = 0; i < BASE_MENU_LENGTH; i++)
+		if (i == currentMenuIndex)
 		{
-			s_printListItem(menuList[i]->name, i == menuIndex);
+			Serial.print(F("Titel: "));
+			Serial.println(menuTree[i].name);
+		}
+		if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
+		{
+			if (i == menuIndex)
+				Serial.print(F(":=> "));
+			else
+				Serial.print(F(":   "));
+			Serial.println(menuTree[i].name);
 		}
 	}
-	else
-		currentMenu->printMenu(menuIndex);
 }
+
+void backMethod()
+{
+	while (menuTree[menuIndex].menuID != menuTree[currentMenuIndex].parentID)
+	{
+		menuIndex++;
+		if (menuIndex > MENU_TREE_SIZE)
+			menuIndex = 0;
+	}
+
+	currentMenuIndex = menuIndex;
+	menuIndex++;
+}
+
+
+
+
+void turnLEDON()
+{
+	Serial.println(F("LED ON!"));
+}
+
+void turnLEDOFF()
+{
+	Serial.println(F("LED OFF!"));
+}
+
+void turnFANON()
+{
+	Serial.println(F("FAN ON!"));
+}
+
+void turnFANOFF()
+{
+	Serial.println(F("FAN OFF!"));
+}
+
+

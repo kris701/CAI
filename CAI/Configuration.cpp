@@ -1,25 +1,24 @@
 #include "Configuration.h"
 
-Menu LED_Menu = Menu{ "LED", NULL, 0 };
-
+Menu LED_Menu = { "LED" };
 MenuItem LED_Menus[] = {
-	MenuItem("LED On", turnLEDON),
-	MenuItem("LED Off", turnLEDOFF),
-	MenuItem("Back", backMethod)
+	{"LED On", turnLEDON},
+	{"LED Off", turnLEDOFF},
+	{"Back", backMethod}
 };
 
-Menu FAN_Menu = Menu{ "Nozzle Blower", NULL, 0 };
-
+Menu FAN_Menu = { "Nozzle Blower"};
 MenuItem FAN_Menus[] = {
-	MenuItem("Fan On", turnFANON),
-	MenuItem("Fan Off", turnFANOFF),
-	MenuItem("Back", backMethod)
+	{"Fan On", turnFANON},
+	{"Fan Off", turnFANOFF},
+	{"Back", backMethod}
 };
 
 Menu bmenuList[BASE_MENU_LENGTH] = {
 	LED_Menu,
 	FAN_Menu
 };
+
 
 void getConfiguration(Menu **_menuList) {
 	for (int i = 0; i < BASE_MENU_LENGTH; i++)
