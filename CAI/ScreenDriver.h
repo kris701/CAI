@@ -28,8 +28,8 @@
 	#include <Adafruit_BusIO_Register.h>
 #endif
 
-#ifndef SERIAL_PRINT
-	#define SERIAL_PRINT false
+#ifndef _CAI_h
+	#include "CAI.h"
 #endif
 
 #define SCREEN_WIDTH 128

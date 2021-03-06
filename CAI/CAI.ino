@@ -7,6 +7,7 @@
 void setupPins() {
 	// insert pinMode here
 	pinMode(DIGITAL_A, OUTPUT);
+	pinMode(DIGITAL_B, OUTPUT);
 }
 
 void turnLEDON();
@@ -49,6 +50,18 @@ void setup()
 	printIntro();
 
 	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+
+	// Test
+	EnterMenu();
+	EnterMenu();
+
+	IncrementMenuIndex();
+	IncrementMenuIndex();
+	EnterMenu();
+
+	IncrementMenuIndex();
+	EnterMenu();
+	EnterMenu();
 }
 
 void loop() {}
@@ -90,32 +103,22 @@ void backMethod()
 
 void turnLEDON()
 {
-#if SERIAL_PRINT
-	Serial.println(F("LED ON!"));
-#endif
 	digitalSwitch(DIGITAL_A, 1);
 }
 
 void turnLEDOFF()
 {
-#if SERIAL_PRINT
-	Serial.println(F("LED OFF!"));
-#endif
 	digitalSwitch(DIGITAL_A, 0);
 }
 
 void turnFANON()
 {
-#if SERIAL_PRINT
-	Serial.println(F("FAN ON!"));
-#endif
+	analogSwitch(DIGITAL_B, 250);
 }
 
 void turnFANOFF()
 {
-#if SERIAL_PRINT
-	Serial.println(F("FAN OFF!"));
-#endif
+	analogSwitch(DIGITAL_B, 5);
 }
 
 
