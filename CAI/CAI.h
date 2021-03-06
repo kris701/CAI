@@ -9,6 +9,19 @@
 
 #define SERIAL_PRINT true
 
+#define DIGITAL_A DD4
+#define DIGITAL_B DD3
+#define DIGITAL_C DD2
+
+#define MOTOR_A_1 DD5
+#define MOTOR_A_2 DD6
+
+#define MOTOR_B_1 DD9
+#define MOTOR_B_2 DD10
+
+#define ANALOG_A A7
+#define ANALOG_B A6
+
 #ifndef _SCREENLIB
 	#define _SCREENLIB
 	#include <splash.h>

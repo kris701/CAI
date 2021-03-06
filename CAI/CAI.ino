@@ -6,6 +6,7 @@
 
 void setupPins() {
 	// insert pinMode here
+	pinMode(DIGITAL_A, OUTPUT);
 }
 
 void turnLEDON();
@@ -92,6 +93,7 @@ void turnLEDON()
 #if SERIAL_PRINT
 	Serial.println(F("LED ON!"));
 #endif
+	digitalSwitch(DIGITAL_A, 1);
 }
 
 void turnLEDOFF()
@@ -99,6 +101,7 @@ void turnLEDOFF()
 #if SERIAL_PRINT
 	Serial.println(F("LED OFF!"));
 #endif
+	digitalSwitch(DIGITAL_A, 0);
 }
 
 void turnFANON()
