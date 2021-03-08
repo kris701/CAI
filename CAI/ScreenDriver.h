@@ -37,12 +37,18 @@
 
 #define OLED_RESET     -1
 
-void setupOLEDScreen();
-void printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
+class ScreenDriver {
+public:
+	ScreenDriver() {};
 
-void printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
-void printText(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
-void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
-void printIntro();
+	void setup();
+	void printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
+	void printIntro();
+
+private:
+	void printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
+	void printText(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
+	void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
+};
 
 #endif

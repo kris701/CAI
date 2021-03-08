@@ -1,13 +1,13 @@
 #include "RotaryButtonDriver.h"
 
-void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)())
+void RotaryButtonDriver::setup(void (*incrementFunc)(), uint8_t incrememtPin, void (*decrementFunc)(), uint8_t decrememtPin, void (*enterFunc)(), uint8_t enterPin)
 {
-	attachInterrupt(digitalPinToInterrupt(Interface_InrementRotationPin), incrementFunc, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(Interface_DecrementRotationPin), decrementFunc, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(Interface_EnterPin), enterFunc, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(incrememtPin), incrementFunc, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(decrememtPin), decrementFunc, CHANGE);
+	attachInterrupt(digitalPinToInterrupt(enterPin), enterFunc, CHANGE);
 }
 
-void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
+void RotaryButtonDriver::incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	incrememtIndex(treeSize, menuIndex);
 	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
@@ -16,7 +16,7 @@ void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8
 	}
 }
 
-void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
+void RotaryButtonDriver::decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	decrememtIndex(treeSize, menuIndex);
 	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
@@ -25,7 +25,7 @@ void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8
 	}
 }
 
-void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex)
+void RotaryButtonDriver::enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	if (menuTree[*menuIndex].command == NULL)
 	{
@@ -36,7 +36,7 @@ void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* me
 		menuTree[*menuIndex].command();
 }
 
-void incrememtIndex(uint8_t const treeSize, uint8_t* menuIndex)
+void RotaryButtonDriver::incrememtIndex(uint8_t const treeSize, uint8_t* menuIndex)
 {
 	if (*menuIndex == treeSize)
 		*menuIndex = 0;
@@ -44,7 +44,7 @@ void incrememtIndex(uint8_t const treeSize, uint8_t* menuIndex)
 		(*menuIndex)++;
 }
 
-void decrememtIndex(uint8_t const treeSize, uint8_t* menuIndex)
+void RotaryButtonDriver::decrememtIndex(uint8_t const treeSize, uint8_t* menuIndex)
 {
 	if (*menuIndex == 0)
 		*menuIndex = treeSize - 1;

@@ -2,7 +2,15 @@
 
 #pragma region Setup
 
+#define Interface_InrementRotationPin 5
+#define Interface_DecrementRotationPin 6
+#define Interface_EnterPin 7
+
 #define MENU_TREE_SIZE 9
+
+RotaryButtonDriver rotaryButtonDriver = {};
+ScreenDriver screenDriver = {};
+ModuleDriver moduleDriver = {};
 
 void setupPins() {
 	// insert pinMode here
@@ -46,11 +54,11 @@ void setup()
 #endif
 
 	setupPins();
-	setupRotaryButton(IncrementMenuIndex, DecrementMenuIndex, EnterMenu);
-	setupOLEDScreen();
+	rotaryButtonDriver.setup(IncrementMenuIndex, Interface_InrementRotationPin, DecrementMenuIndex, Interface_DecrementRotationPin, EnterMenu, Interface_EnterPin);
+	screenDriver.setup();
 
-	printIntro();
-	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	screenDriver.printIntro();
+	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 
 	// Test
 	EnterMenu();
@@ -69,20 +77,20 @@ void loop() { delay(100); }
 
 void IncrementMenuIndex()
 {
-	incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
-	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
 void DecrementMenuIndex()
 {
-	decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
-	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	rotaryButtonDriver.decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
 void EnterMenu()
 {
-	enterMenu(menuTree, &currentMenuIndex, &menuIndex);
-	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	rotaryButtonDriver.enterMenu(menuTree, &currentMenuIndex, &menuIndex);
+	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
 
@@ -104,22 +112,22 @@ void backMethod()
 
 void turnLEDON()
 {
-	digitalSwitch(DIGITAL_A, 1);
+	moduleDriver.digitalSwitch(DIGITAL_A, 1);
 }
 
 void turnLEDOFF()
 {
-	digitalSwitch(DIGITAL_A, 0);
+	moduleDriver.digitalSwitch(DIGITAL_A, 0);
 }
 
 void turnFANON()
 {
-	analogSwitch(DIGITAL_B, 250);
+	moduleDriver.analogSwitch(DIGITAL_B, 250);
 }
 
 void turnFANOFF()
 {
-	analogSwitch(DIGITAL_B, 5);
+	moduleDriver.analogSwitch(DIGITAL_B, 5);
 }
 
 

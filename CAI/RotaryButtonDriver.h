@@ -13,16 +13,20 @@
 	#include "Classes.h"
 #endif
 
-#define Interface_InrementRotationPin 5
-#define Interface_DecrementRotationPin 6
-#define Interface_EnterPin 7
+class RotaryButtonDriver {
+public:
+	RotaryButtonDriver() {};
 
-void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
-void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
-void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)());
-void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void RotaryButtonDriver::setup(void (*incrementFunc)(), uint8_t incrememtPin, void (*decrementFunc)(), uint8_t decrememtPin, void (*enterFunc)(), uint8_t enterPin);
+	void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
+
+private:
+	void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
+	void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
+};
+
 
 #endif
 
