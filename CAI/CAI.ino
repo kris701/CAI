@@ -16,16 +16,19 @@ void turnFANON();
 void turnFANOFF();
 void backMethod();
 
+const char PROGMEM TEXT_LED[] = "LED";
+const char PROGMEM TEXT_FAN[] = "FAN";
+
 const MenuItem menuTree[MENU_TREE_SIZE] = {
-	{0,-1, "Main Menu", NULL},
-		{1,0, "LED", NULL},
-			{-1,1, "On", turnLEDON},
-			{-1,1, "Off", turnLEDOFF},
-			{-1,1, "Back", backMethod},
-		{2,0, "FAN", NULL},
-			{-1,2, "On", turnFANON},
-			{-1,2, "Off", turnFANOFF},
-			{-1,2, "Back", backMethod},
+	{0,-1, TEXT_MAINMENU, NULL},
+		{1,0, TEXT_LED, NULL},
+			{-1,1, TEXT_ON, turnLEDON},
+			{-1,1, TEXT_OFF, turnLEDOFF},
+			{-1,1, TEXT_BACK, backMethod},
+		{2,0, TEXT_FAN, NULL},
+			{-1,2, TEXT_ON, turnFANON},
+			{-1,2, TEXT_OFF, turnFANOFF},
+			{-1,2, TEXT_BACK, backMethod},
 };
 
 uint8_t menuIndex = 1;
@@ -80,7 +83,7 @@ void DecrementMenuIndex()
 
 void EnterMenu()
 {
-	enterMenu(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	enterMenu(menuTree, &currentMenuIndex, &menuIndex);
 	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 

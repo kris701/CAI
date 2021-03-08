@@ -22,7 +22,7 @@ void decrememtIndex(uint8_t treeSize, uint8_t* menuIndex);
 void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)());
 void incrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 void decrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-void enterMenu(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
 
 #endif
 

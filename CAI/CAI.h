@@ -8,6 +8,7 @@
 #endif
 
 #define SERIAL_PRINT true
+#define USE_TEXT_DEFAULTS true
 
 #define DIGITAL_A DD4
 #define DIGITAL_B DD3
@@ -21,6 +22,14 @@
 
 #define ANALOG_A A7
 #define ANALOG_B A6
+
+#ifdef USE_TEXT_DEFAULTS && USE_TEXT_DEFAULTS == true
+const char PROGMEM TEXT_MAINMENU[] = "Main Menu";
+const char PROGMEM TEXT_ON[] = "On";
+const char PROGMEM TEXT_OFF[] = "Off";
+const char PROGMEM TEXT_BACK[] = "Back";
+#endif 
+
 
 #ifndef _SCREENLIB
 	#define _SCREENLIB
