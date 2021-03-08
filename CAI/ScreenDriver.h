@@ -32,23 +32,23 @@
 	#include "CAI.h"
 #endif
 
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-
-#define OLED_RESET     -1
-
 class ScreenDriver {
-public:
-	ScreenDriver() {};
-
-	void setup();
-	void printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
-	void printIntro();
-
 private:
+	const uint8_t screenWidth;
+	const uint8_t screenHeight;
+	const uint8_t screenReset;
+	Adafruit_SSD1306 display;
+
 	void printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
 	void printText(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
 	void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
+	
+public:
+	ScreenDriver(const uint8_t screenWidth, const uint8_t screenHeight, const uint8_t screenReset) : screenWidth(screenWidth), screenHeight(screenHeight), screenReset(screenReset) {};
+
+	void startDisplay();
+	void printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
+	void printIntro();
 };
 
 #endif

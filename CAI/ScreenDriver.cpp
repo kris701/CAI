@@ -1,8 +1,9 @@
 #include "ScreenDriver.h"
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+void ScreenDriver::startDisplay() {
 
-void ScreenDriver::setup() {
+	display = Adafruit_SSD1306(screenWidth, screenHeight, &Wire, screenReset);
+
 	if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
 #if SERIAL_PRINT
 		Serial.println(F("SSD1306 allocation failed"));

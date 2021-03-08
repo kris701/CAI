@@ -1,12 +1,5 @@
 #include "RotaryButtonDriver.h"
 
-void RotaryButtonDriver::setup(void (*incrementFunc)(), uint8_t incrememtPin, void (*decrementFunc)(), uint8_t decrememtPin, void (*enterFunc)(), uint8_t enterPin)
-{
-	attachInterrupt(digitalPinToInterrupt(incrememtPin), incrementFunc, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(decrememtPin), decrementFunc, CHANGE);
-	attachInterrupt(digitalPinToInterrupt(enterPin), enterFunc, CHANGE);
-}
-
 void RotaryButtonDriver::incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	incrememtIndex(treeSize, menuIndex);

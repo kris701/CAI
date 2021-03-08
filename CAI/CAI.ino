@@ -6,10 +6,18 @@
 #define Interface_DecrementRotationPin 6
 #define Interface_EnterPin 7
 
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET     -1
+
 #define MENU_TREE_SIZE 9
 
-RotaryButtonDriver rotaryButtonDriver = {};
-ScreenDriver screenDriver = {};
+void IncrementMenuIndex();
+void DecrementMenuIndex();
+void EnterMenu();
+
+RotaryButtonDriver rotaryButtonDriver(IncrementMenuIndex, Interface_InrementRotationPin, DecrementMenuIndex, Interface_DecrementRotationPin, EnterMenu, Interface_EnterPin);
+ScreenDriver screenDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET);
 ModuleDriver moduleDriver = {};
 
 void setupPins() {
@@ -54,9 +62,7 @@ void setup()
 #endif
 
 	setupPins();
-	rotaryButtonDriver.setup(IncrementMenuIndex, Interface_InrementRotationPin, DecrementMenuIndex, Interface_DecrementRotationPin, EnterMenu, Interface_EnterPin);
-	screenDriver.setup();
-
+	screenDriver.startDisplay();
 	screenDriver.printIntro();
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 

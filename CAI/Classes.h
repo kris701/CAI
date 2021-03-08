@@ -18,8 +18,10 @@ public:
 	const __FlashStringHelper* name;
 	void(*command)(void);
 
-	MenuItem(const uint8_t menuID, const uint8_t parentID, const char* name, void(*command)(void)) : menuID(menuID), parentID(parentID), name(FC(name)), command(command) {}
-	MenuItem(const uint8_t menuID, const uint8_t parentID, const __FlashStringHelper* name, void(*command)(void)) : menuID(menuID), parentID(parentID), name(name), command(command) {}
+	MenuItem(const uint8_t menuID, const uint8_t parentID, const char* name, void(*command)(void)) 
+		: menuID(menuID), parentID(parentID), name(FC(name)), command(command) {}
+	MenuItem(const uint8_t menuID, const uint8_t parentID, const __FlashStringHelper* name, void(*command)(void)) 
+		: menuID(menuID), parentID(parentID), name(name), command(command) {}
 };
 
 #endif
