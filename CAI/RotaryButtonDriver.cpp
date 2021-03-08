@@ -27,7 +27,7 @@ void decrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* cu
 
 void enterMenu(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
-	if (menuTree[*menuIndex].hasChildren)
+	if (menuTree[*menuIndex].command == NULL)
 	{
 		*currentMenuIndex = *menuIndex;
 		(*menuIndex)++;
