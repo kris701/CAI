@@ -67,7 +67,7 @@ void setup()
 	EnterMenu();
 }
 
-void loop() {}
+void loop() { delay(100); }
 
 void IncrementMenuIndex()
 {
