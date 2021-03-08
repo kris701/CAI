@@ -16,7 +16,7 @@ void setupOLEDScreen() {
 	display.clearDisplay();
 }
 
-void printMenu(const MenuItem menuTree[], uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
+void printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
 	for (uint8_t i = 0; i < treeSize; i++)
 	{
 		if (i == currentMenuIndex)

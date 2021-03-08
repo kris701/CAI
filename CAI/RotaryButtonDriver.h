@@ -17,11 +17,11 @@
 #define Interface_DecrementRotationPin 6
 #define Interface_EnterPin 7
 
-void incrememtIndex(uint8_t treeSize, uint8_t* menuIndex);
-void decrememtIndex(uint8_t treeSize, uint8_t* menuIndex);
+void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
+void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 void setupRotaryButton(void (*incrementFunc)(), void (*decrementFunc)(), void (*enterFunc)());
-void incrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-void decrementMenuIndex(const MenuItem menuTree[], uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
 
 #endif

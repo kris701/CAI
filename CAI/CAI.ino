@@ -46,12 +46,10 @@ void setup()
 #endif
 
 	setupPins();
-
 	setupRotaryButton(IncrementMenuIndex, DecrementMenuIndex, EnterMenu);
 	setupOLEDScreen();
 
 	printIntro();
-
 	printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 
 	// Test
