@@ -10,15 +10,15 @@
 #define SERIAL_PRINT true
 #define USE_TEXT_DEFAULTS true
 
-#define DIGITAL_A DD4
-#define DIGITAL_B DD3
-#define DIGITAL_C DD2
+#define DIGITAL_A 4
+#define DIGITAL_B 3
+#define DIGITAL_C 2
 
-#define MOTOR_A_1 DD5
-#define MOTOR_A_2 DD6
+#define MOTOR_A_1 5
+#define MOTOR_A_2 6
 
-#define MOTOR_B_1 DD9
-#define MOTOR_B_2 DD10
+#define MOTOR_B_1 9
+#define MOTOR_B_2 10
 
 #define ANALOG_A A7
 #define ANALOG_B A6

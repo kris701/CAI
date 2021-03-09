@@ -20,6 +20,13 @@ RotaryButtonDriver rotaryButtonDriver(IncrementMenuIndex, Interface_InrementRota
 ScreenDriver screenDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET);
 ModuleDriver moduleDriver = {};
 
+uint8_t menuIndex = 1;
+uint8_t currentMenuIndex = 0;
+
+#pragma endregion
+
+#pragma region Configuration
+
 void setupPins() {
 	// insert pinMode here
 	pinMode(DIGITAL_A, OUTPUT);
@@ -46,9 +53,6 @@ const MenuItem menuTree[MENU_TREE_SIZE] = {
 			{-1,2, TEXT_OFF, turnFANOFF},
 			{-1,2, TEXT_BACK, backMethod},
 };
-
-uint8_t menuIndex = 1;
-uint8_t currentMenuIndex = 0;
 
 #pragma endregion
 
