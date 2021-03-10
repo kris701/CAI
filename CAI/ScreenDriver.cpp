@@ -17,27 +17,27 @@ void ScreenDriver::startDisplay() {
 	display.clearDisplay();
 }
 
-void ScreenDriver::printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
+void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
 	for (uint8_t i = 0; i < treeSize; i++)
 	{
 		if (i == currentMenuIndex)
 		{
 #if SERIAL_PRINT
 			Serial.print(F("Titel: "));
-			Serial.println(menuTree[i].name);
+			Serial.println(menuTree[i].Getname());
 #else
 			printText(F("Titel: "));
 			printText(menuTree[i].name, 8);
 #endif
 		}
-		if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
+		if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
 		{
 #if SERIAL_PRINT
 			if (i == menuIndex)
 				Serial.print(F(":=> "));
 			else
 				Serial.print(F(":   "));
-			Serial.println(menuTree[i].name);
+			Serial.println(menuTree[i].Getname());
 #else
 			if (i == menuIndex)
 				printText(F(":=> "));

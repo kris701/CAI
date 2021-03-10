@@ -41,7 +41,7 @@ void backMethod();
 const char PROGMEM TEXT_LED[] = "LED";
 const char PROGMEM TEXT_FAN[] = "FAN";
 
-const MenuItem menuTree[MENU_TREE_SIZE] = {
+MenuItem menuTree[MENU_TREE_SIZE] = {
 	{0,-1, TEXT_MAINMENU, NULL},
 		{1,0, TEXT_LED, NULL},
 			{-1,1, TEXT_ON, turnLEDON},
@@ -62,6 +62,7 @@ void setup()
 #if SERIAL_PRINT
 	Serial.begin(115200);
 	Serial.println(F("Starting..."));
+	delay(100);
 #endif
 
 	setupPins();
@@ -95,7 +96,7 @@ void EnterMenu()
 
 void backMethod()
 {
-	while (menuTree[menuIndex].menuID != menuTree[currentMenuIndex].parentID)
+	while (menuTree[menuIndex].GetmenuID() != menuTree[currentMenuIndex].GetparentID())
 	{
 		menuIndex++;
 		if (menuIndex > MENU_TREE_SIZE)

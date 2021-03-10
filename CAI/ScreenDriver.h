@@ -32,11 +32,16 @@
 	#include "CAI.h"
 #endif
 
+#ifndef _MACROS_h
+	#include "Macros.h"
+#endif
+
 class ScreenDriver {
+	GET_Property(const uint8_t, screenWidth)
+	GET_Property(const uint8_t, screenHeight)
+	GET_Property(const uint8_t, screenReset)
+
 private:
-	const uint8_t screenWidth;
-	const uint8_t screenHeight;
-	const uint8_t screenReset;
 	Adafruit_SSD1306 display;
 
 	void printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
@@ -44,10 +49,11 @@ private:
 	void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
 	
 public:
-	ScreenDriver(const uint8_t screenWidth, const uint8_t screenHeight, const uint8_t screenReset) : screenWidth(screenWidth), screenHeight(screenHeight), screenReset(screenReset) {};
+	ScreenDriver(const uint8_t screenWidth, const uint8_t screenHeight, const uint8_t screenReset) 
+		: screenWidth(screenWidth), screenHeight(screenHeight), screenReset(screenReset){};
 
 	void startDisplay();
-	void printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
+	void printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
 	void printIntro();
 };
 

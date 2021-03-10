@@ -13,18 +13,22 @@
 	#include "Classes.h"
 #endif
 
-class RotaryButtonDriver {
-private:
-	const uint8_t incrememtPin;
-	const uint8_t decrememtPin;
-	const uint8_t enterPin;
+#ifndef _MACROS_h
+	#include "Macros.h"
+#endif
 
+class RotaryButtonDriver {
+	GET_Property(const uint8_t, incrememtPin)
+	GET_Property(const uint8_t, decrememtPin)
+	GET_Property(const uint8_t, enterPin)
+
+private:
 	void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 	void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 
 public:
-	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), uint8_t enterPin)
-		: incrememtPin(incrememtPin), decrememtPin(decrememtPin), enterPin(enterPin)
+	RotaryButtonDriver(const uint8_t incrememtPin, const uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), const uint8_t enterPin) :
+		incrememtPin(incrememtPin), decrememtPin(decrememtPin), enterPin(enterPin)
 	{
 		pinMode(incrememtPin, INPUT_PULLUP);
 		pinMode(decrememtPin, INPUT_PULLUP);
@@ -35,9 +39,9 @@ public:
 	};
 
 	bool isClockwise();
-	void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-	void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-	void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void incrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void decrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void enterMenu(MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
 };
 
 #endif

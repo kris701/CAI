@@ -9,19 +9,26 @@
 	#include "WProgram.h"
 #endif
 
+#ifndef _MACROS_h
+	#include "Macros.h"
+#endif
+
 #define FC(string_constant) (reinterpret_cast<const __FlashStringHelper *>(string_constant))
 
 class MenuItem {
+	GET_Property(const uint8_t, menuID)
+	GET_Property(const uint8_t, parentID)
+	GET_Property(const __FlashStringHelper*, name)
+
 public:
-	const uint8_t menuID;
-	const uint8_t parentID;
-	const __FlashStringHelper* name;
 	void(*command)(void);
 
+	MenuItem(const uint8_t menuID, const uint8_t parentID, char* name, void(*command)(void)) 
+		: command(command), name(FC(name)), menuID(menuID), parentID(parentID) {};
 	MenuItem(const uint8_t menuID, const uint8_t parentID, const char* name, void(*command)(void)) 
-		: menuID(menuID), parentID(parentID), name(FC(name)), command(command) {}
-	MenuItem(const uint8_t menuID, const uint8_t parentID, const __FlashStringHelper* name, void(*command)(void)) 
-		: menuID(menuID), parentID(parentID), name(name), command(command) {}
+		: command(command), name(FC(name)), menuID(menuID), parentID(parentID) {};
+	MenuItem(const uint8_t menuID, const uint8_t parentID, __FlashStringHelper* name, void(*command)(void)) 
+		: command(command), name(name), menuID(menuID), parentID(parentID) {};
 };
 
 #endif
