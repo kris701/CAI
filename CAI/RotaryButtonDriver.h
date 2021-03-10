@@ -18,21 +18,20 @@ private:
 	const uint8_t incrememtPin;
 	const uint8_t decrememtPin;
 	const uint8_t enterPin;
-	void (*doEncode)();
-	void (*enterFunc)();
 
 	void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 	void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 
 public:
 	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), uint8_t enterPin)
-		: incrememtPin(incrememtPin), decrememtPin(decrememtPin), doEncode(doEncodeFunc), enterFunc(enterFunc), enterPin(enterPin)
+		: incrememtPin(incrememtPin), decrememtPin(decrememtPin), enterPin(enterPin)
 	{
 		pinMode(incrememtPin, INPUT_PULLUP);
 		pinMode(decrememtPin, INPUT_PULLUP);
+		pinMode(enterPin, INPUT_PULLUP);
 
-		attachInterrupt(0, doEncode, CHANGE);
-		attachInterrupt(digitalPinToInterrupt(enterPin), enterFunc, CHANGE);
+		attachInterrupt(digitalPinToInterrupt(incrememtPin), doEncodeFunc, CHANGE);
+		attachInterrupt(digitalPinToInterrupt(enterPin), enterFunc, FALLING);
 	};
 
 	bool isClockwise();

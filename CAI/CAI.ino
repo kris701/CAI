@@ -2,9 +2,9 @@
 
 #pragma region Setup
 
-#define Interface_InrementRotationPin 5
-#define Interface_DecrementRotationPin 6
-#define Interface_EnterPin 7
+#define Interface_InrementRotationPin 2
+#define Interface_DecrementRotationPin 11
+#define Interface_EnterPin 3
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
