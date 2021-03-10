@@ -12,11 +12,10 @@
 
 #define MENU_TREE_SIZE 9
 
-void IncrementMenuIndex();
-void DecrementMenuIndex();
+void DoEncode();
 void EnterMenu();
 
-RotaryButtonDriver rotaryButtonDriver(IncrementMenuIndex, Interface_InrementRotationPin, DecrementMenuIndex, Interface_DecrementRotationPin, EnterMenu, Interface_EnterPin);
+RotaryButtonDriver rotaryButtonDriver(Interface_InrementRotationPin, Interface_DecrementRotationPin, DoEncode, EnterMenu, Interface_EnterPin);
 ScreenDriver screenDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET);
 ModuleDriver moduleDriver = {};
 
@@ -69,32 +68,21 @@ void setup()
 	screenDriver.startDisplay();
 	screenDriver.printIntro();
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
-
-	// Test
-	EnterMenu();
-	EnterMenu();
-
-	IncrementMenuIndex();
-	IncrementMenuIndex();
-	EnterMenu();
-
-	IncrementMenuIndex();
-	EnterMenu();
-	EnterMenu();
 }
 
 void loop() { delay(100); }
 
-void IncrementMenuIndex()
-{
-	rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
-	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
-}
-
-void DecrementMenuIndex()
-{
-	rotaryButtonDriver.decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
-	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+void DoEncode() {
+	if (rotaryButtonDriver.isClockwise())
+	{
+		rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+		screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	}
+	else
+	{
+		rotaryButtonDriver.decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+		screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	}
 }
 
 void EnterMenu()

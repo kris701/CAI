@@ -44,3 +44,15 @@ void RotaryButtonDriver::decrememtIndex(uint8_t const treeSize, uint8_t* menuInd
 	else
 		(*menuIndex)--;
 }
+
+bool RotaryButtonDriver::isClockwise()
+{
+	if (digitalRead(incrememtPin) == digitalRead(decrememtPin))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

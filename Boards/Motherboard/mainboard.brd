@@ -712,13 +712,13 @@ design rules under a new name.</description>
 <attribute name="POPULARITY" value="4" x="-13.97" y="-5.08" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="36.195" y="46.99" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="DIGITAL_A" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="25.4" smashed="yes">
+<element name="DIGITAL_A" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="16.51" smashed="yes">
+<attribute name="NAME" x="46.515" y="14.47" size="1.016" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="47.4675" y="20.4025" size="1.016" layer="27" ratio="10"/>
+</element>
+<element name="DIGITAL_B" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="25.4" smashed="yes">
 <attribute name="NAME" x="46.515" y="23.36" size="1.016" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="47.4675" y="29.2925" size="1.016" layer="27" ratio="10"/>
-</element>
-<element name="DIGITAL_B" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="34.29" smashed="yes">
-<attribute name="NAME" x="46.515" y="32.25" size="1.016" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="47.4675" y="38.1825" size="1.016" layer="27" ratio="10"/>
 </element>
 <element name="DIGITAL_C" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="43.18" smashed="yes">
 <attribute name="NAME" x="46.515" y="41.14" size="1.016" layer="25" ratio="10" rot="R90"/>
@@ -738,9 +738,9 @@ design rules under a new name.</description>
 <attribute name="NAME" x="46.515" y="5.58" size="1.016" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="47.4675" y="11.5125" size="1.016" layer="27" ratio="10"/>
 </element>
-<element name="MOTOR_B" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="16.51" smashed="yes">
-<attribute name="NAME" x="46.515" y="14.47" size="1.016" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="47.4675" y="20.4025" size="1.016" layer="27" ratio="10"/>
+<element name="MOTOR_B" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="52.07" y="34.29" smashed="yes">
+<attribute name="NAME" x="46.515" y="32.25" size="1.016" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="47.4675" y="38.1825" size="1.016" layer="27" ratio="10"/>
 </element>
 <element name="PWR" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-03-PACKAGE-LONG-PAD" value="JST-XH-03-PIN-LONG-PAD" x="13.97" y="7.62" smashed="yes">
 <attribute name="NAME" x="8.415" y="5.58" size="1.016" layer="25" ratio="10" rot="R90"/>
@@ -784,22 +784,23 @@ design rules under a new name.</description>
 <wire x1="14.224" y1="36.0045" x2="14.224" y2="44.0055" width="0.635" layer="16"/>
 <wire x1="14.224" y1="44.0055" x2="13.97" y2="44.45" width="0.635" layer="16"/>
 <wire x1="14.224" y1="36.0045" x2="13.97" y2="35.56" width="0.635" layer="16"/>
-<wire x1="51.562" y1="2.9845" x2="55.40375" y2="6.82625" width="0.635" layer="16"/>
-<wire x1="55.40375" y1="6.82625" x2="57.0865" y2="8.509" width="0.635" layer="16"/>
+<wire x1="51.562" y1="2.9845" x2="54.5465" y2="5.969" width="0.635" layer="16"/>
 <wire x1="24.0665" y1="2.9845" x2="51.562" y2="2.9845" width="0.635" layer="16"/>
 <wire x1="18.796" y1="8.255" x2="24.0665" y2="2.9845" width="0.635" layer="16"/>
 <contactref element="DIGITAL_A" pad="3"/>
 <contactref element="DIGITAL_B" pad="3"/>
 <contactref element="DIGITAL_C" pad="3"/>
-<wire x1="57.0865" y1="22.9235" x2="54.61" y2="25.4" width="0.635" layer="16"/>
-<wire x1="57.0865" y1="8.509" x2="57.0865" y2="22.9235" width="0.635" layer="16"/>
-<wire x1="54.61" y1="25.4" x2="54.61" y2="34.29" width="0.635" layer="16"/>
-<wire x1="54.61" y1="34.29" x2="54.61" y2="43.18" width="0.635" layer="16"/>
+<wire x1="54.61" y1="16.51" x2="54.5465" y2="16.4465" width="0.635" layer="16"/>
+<wire x1="54.5465" y1="16.4465" x2="54.5465" y2="5.969" width="0.635" layer="16"/>
+<wire x1="54.61" y1="25.4" x2="54.61" y2="16.51" width="0.635" layer="16"/>
+<wire x1="54.61" y1="43.18" x2="57.15" y2="40.64" width="0.635" layer="16"/>
+<wire x1="57.15" y1="40.64" x2="57.15" y2="27.94" width="0.635" layer="16"/>
+<wire x1="57.15" y1="27.94" x2="54.61" y2="25.4" width="0.635" layer="16"/>
 <contactref element="MOTOR_A" pad="3"/>
-<wire x1="54.61" y1="7.62" x2="55.40375" y2="6.82625" width="0.635" layer="16"/>
 <contactref element="C3" pad="+"/>
 <wire x1="19.01" y1="25.4" x2="19.05" y2="25.4" width="0.635" layer="16"/>
 <wire x1="19.01" y1="25.4" x2="18.796" y2="25.4" width="0.635" layer="16"/>
+<wire x1="54.61" y1="16.51" x2="54.61" y2="7.62" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND">
 <contactref element="IC1" pad="2"/>
@@ -841,44 +842,39 @@ design rules under a new name.</description>
 <contactref element="C4" pad="+"/>
 <wire x1="8.85" y1="25.4" x2="9.0805" y2="25.4" width="0.635" layer="16"/>
 </signal>
-<signal name="D2">
-<contactref element="DIGITAL_C" pad="1"/>
-<wire x1="49.0855" y1="43.1165" x2="49.53" y2="43.18" width="0.635" layer="16"/>
-<contactref element="DIGITAL" pad="5"/>
-<wire x1="41.91" y1="35.56" x2="39.37" y2="35.56" width="0.635" layer="16"/>
-<wire x1="49.53" y1="43.18" x2="41.91" y2="35.56" width="0.635" layer="16"/>
-</signal>
-<signal name="D3">
-<contactref element="DIGITAL" pad="6"/>
-<contactref element="DIGITAL_B" pad="1"/>
-<wire x1="44.0055" y1="32.8295" x2="39.37" y2="32.8295" width="0.635" layer="16"/>
-<wire x1="49.53" y1="34.29" x2="45.466" y2="34.29" width="0.635" layer="16"/>
-<wire x1="45.466" y1="34.29" x2="44.0055" y2="32.8295" width="0.635" layer="16"/>
-<wire x1="39.37" y1="32.8295" x2="39.37" y2="33.02" width="0.635" layer="16"/>
-</signal>
 <signal name="D4">
+<contactref element="DIGITAL_C" pad="1"/>
 <contactref element="DIGITAL" pad="7"/>
-<contactref element="DIGITAL_A" pad="1"/>
-<wire x1="41.529" y1="30.5435" x2="39.37" y2="30.5435" width="0.635" layer="16"/>
-<wire x1="46.6725" y1="25.4" x2="41.529" y2="30.5435" width="0.635" layer="16"/>
-<wire x1="49.53" y1="25.4" x2="46.6725" y2="25.4" width="0.635" layer="16"/>
-<wire x1="39.37" y1="30.5435" x2="39.37" y2="30.48" width="0.635" layer="16"/>
+<wire x1="49.53" y1="43.18" x2="49.53" y2="38.1" width="0.635" layer="16"/>
+<wire x1="49.53" y1="38.1" x2="41.91" y2="30.48" width="0.635" layer="16"/>
+<wire x1="41.91" y1="30.48" x2="39.37" y2="30.48" width="0.635" layer="16"/>
 </signal>
-<signal name="D5">
-<contactref element="DIGITAL" pad="8"/>
-<contactref element="MOTOR_B" pad="2"/>
-<wire x1="41.529" y1="28.2575" x2="39.37" y2="28.2575" width="0.635" layer="16"/>
-<wire x1="51.943" y1="17.8435" x2="41.529" y2="28.2575" width="0.635" layer="16"/>
-<wire x1="51.943" y1="16.8275" x2="51.943" y2="17.8435" width="0.635" layer="16"/>
-<wire x1="39.37" y1="28.2575" x2="39.37" y2="27.94" width="0.635" layer="16"/>
-<wire x1="51.943" y1="16.8275" x2="52.07" y2="16.51" width="0.635" layer="16"/>
+<signal name="D7">
+<contactref element="DIGITAL_B" pad="1"/>
+<contactref element="DIGITAL" pad="10"/>
+<wire x1="46.99" y1="22.86" x2="49.53" y2="25.4" width="0.635" layer="16"/>
+<wire x1="39.37" y1="22.86" x2="46.99" y2="22.86" width="0.635" layer="16"/>
+</signal>
+<signal name="D8">
+<contactref element="DIGITAL_A" pad="1"/>
+<contactref element="DIGITAL" pad="11"/>
+<wire x1="49.53" y1="16.51" x2="48.26" y2="16.51" width="0.635" layer="16"/>
+<wire x1="48.26" y1="16.51" x2="44.45" y2="20.32" width="0.635" layer="16"/>
+<wire x1="44.45" y1="20.32" x2="39.37" y2="20.32" width="0.635" layer="16"/>
 </signal>
 <signal name="D6">
+<contactref element="MOTOR_B" pad="2"/>
 <contactref element="DIGITAL" pad="9"/>
+<wire x1="45.72" y1="25.4" x2="52.07" y2="31.75" width="0.635" layer="16"/>
+<wire x1="52.07" y1="31.75" x2="52.07" y2="34.29" width="0.635" layer="16"/>
+<wire x1="39.37" y1="25.4" x2="45.72" y2="25.4" width="0.635" layer="16"/>
+</signal>
+<signal name="D5">
 <contactref element="MOTOR_B" pad="1"/>
-<wire x1="42.1005" y1="25.4" x2="39.37" y2="25.4" width="0.635" layer="16"/>
-<wire x1="49.53" y1="16.51" x2="49.53" y2="17.9705" width="0.635" layer="16"/>
-<wire x1="49.53" y1="17.9705" x2="42.1005" y2="25.4" width="0.635" layer="16"/>
+<contactref element="DIGITAL" pad="8"/>
+<wire x1="49.53" y1="34.29" x2="49.53" y2="31.75" width="0.635" layer="16"/>
+<wire x1="49.53" y1="31.75" x2="45.72" y2="27.94" width="0.635" layer="16"/>
+<wire x1="45.72" y1="27.94" x2="39.37" y2="27.94" width="0.635" layer="16"/>
 </signal>
 <signal name="D9">
 <contactref element="MOTOR_A" pad="2"/>
@@ -896,29 +892,30 @@ design rules under a new name.</description>
 <signal name="RXD">
 <contactref element="DIGITAL" pad="2"/>
 <contactref element="RXTX" pad="1"/>
-<wire x1="40.64" y1="43.1165" x2="39.37" y2="43.1165" width="0.635" layer="16"/>
-<wire x1="49.53" y1="52.0065" x2="40.64" y2="43.1165" width="0.635" layer="16"/>
-<wire x1="49.53" y1="52.07" x2="49.53" y2="52.0065" width="0.635" layer="16"/>
-<wire x1="39.37" y1="43.1165" x2="39.37" y2="43.18" width="0.635" layer="16"/>
+<wire x1="49.53" y1="52.07" x2="45.72" y2="52.07" width="0.635" layer="16"/>
+<wire x1="45.72" y1="52.07" x2="41.91" y2="48.26" width="0.635" layer="16"/>
+<wire x1="41.91" y1="48.26" x2="41.91" y2="44.45" width="0.635" layer="16"/>
+<wire x1="41.91" y1="44.45" x2="40.64" y2="43.18" width="0.635" layer="16"/>
+<wire x1="40.64" y1="43.18" x2="39.37" y2="43.18" width="0.635" layer="16"/>
 </signal>
 <signal name="REB_A">
-<contactref element="FRONT_PANEL" pad="4"/>
-<wire x1="32.0675" y1="49.53" x2="32.0675" y2="16.5735" width="0.635" layer="16"/>
-<wire x1="22.479" y1="59.1185" x2="32.0675" y2="49.53" width="0.635" layer="16"/>
-<wire x1="13.081" y1="59.1185" x2="22.479" y2="59.1185" width="0.635" layer="16"/>
-<wire x1="10.2235" y1="56.261" x2="13.081" y2="59.1185" width="0.635" layer="16"/>
-<wire x1="10.2235" y1="55.118" x2="10.2235" y2="56.261" width="0.635" layer="16"/>
-<wire x1="10.2235" y1="55.118" x2="10.16" y2="54.61" width="0.635" layer="16"/>
 <contactref element="DIGITAL" pad="14"/>
-<wire x1="32.0675" y1="16.5735" x2="35.941" y2="12.7" width="0.635" layer="16"/>
-<wire x1="35.941" y1="12.7" x2="39.37" y2="12.7" width="0.635" layer="16"/>
+<contactref element="FRONT_PANEL" pad="3"/>
+<wire x1="13.6525" y1="56.02956875" x2="14.58243125" y2="56.9595" width="0.635" layer="16"/>
+<wire x1="12.7" y1="54.61" x2="13.6525" y2="55.5625" width="0.635" layer="16"/>
+<wire x1="13.6525" y1="55.5625" x2="13.6525" y2="56.02956875" width="0.635" layer="16"/>
+<wire x1="14.58243125" y1="56.9595" x2="22.82545" y2="56.9595" width="0.635" layer="16"/>
+<wire x1="22.82545" y1="56.9595" x2="30.9245" y2="48.86045" width="0.635" layer="16"/>
+<wire x1="30.9245" y1="16.0655" x2="34.29" y2="12.7" width="0.635" layer="16"/>
+<wire x1="34.29" y1="12.7" x2="39.37" y2="12.7" width="0.635" layer="16"/>
+<wire x1="30.9245" y1="48.86045" x2="30.9245" y2="16.0655" width="0.635" layer="16"/>
 </signal>
 <signal name="TXD">
 <contactref element="RXTX" pad="2"/>
 <contactref element="DIGITAL" pad="1"/>
-<wire x1="49.3395" y1="55.118" x2="39.9415" y2="45.72" width="0.635" layer="16"/>
-<wire x1="39.37" y1="45.72" x2="39.9415" y2="45.72" width="0.635" layer="16"/>
-<wire x1="49.53" y1="55.118" x2="49.3395" y2="55.118" width="0.635" layer="16"/>
+<wire x1="45.5295" y1="55.118" x2="39.37" y2="48.9585" width="0.635" layer="16"/>
+<wire x1="39.37" y1="45.72" x2="39.37" y2="48.9585" width="0.635" layer="16"/>
+<wire x1="49.53" y1="55.118" x2="45.5295" y2="55.118" width="0.635" layer="16"/>
 <wire x1="51.943" y1="52.705" x2="49.53" y2="55.118" width="0.635" layer="16"/>
 <wire x1="51.943" y1="52.2605" x2="51.943" y2="52.705" width="0.635" layer="16"/>
 <wire x1="51.943" y1="52.2605" x2="52.07" y2="52.07" width="0.635" layer="16"/>
@@ -926,8 +923,9 @@ design rules under a new name.</description>
 <signal name="A7">
 <contactref element="ANALOG" pad="11"/>
 <contactref element="ANALOG_A" pad="1"/>
-<wire x1="16.51" y1="44.45" x2="16.51" y2="40.64" width="0.635" layer="16"/>
-<wire x1="24.13" y1="35.56" x2="16.51" y2="40.64" width="0.635" layer="16"/>
+<wire x1="24.13" y1="35.56" x2="20.32" y2="35.56" width="0.635" layer="16"/>
+<wire x1="20.32" y1="35.56" x2="16.51" y2="39.37" width="0.635" layer="16"/>
+<wire x1="16.51" y1="39.37" x2="16.51" y2="44.45" width="0.635" layer="16"/>
 </signal>
 <signal name="A6">
 <contactref element="ANALOG" pad="10"/>
@@ -961,28 +959,27 @@ design rules under a new name.</description>
 <wire x1="15.367" y1="54.5465" x2="15.24" y2="54.61" width="0.635" layer="16"/>
 </signal>
 <signal name="REB_SWITCH">
-<contactref element="DIGITAL" pad="11"/>
-<contactref element="FRONT_PANEL" pad="5"/>
-<wire x1="12.60755" y1="60.2615" x2="22.95245" y2="60.2615" width="0.635" layer="16"/>
-<wire x1="22.95245" y1="60.2615" x2="33.2105" y2="50.00345" width="0.635" layer="16"/>
-<wire x1="33.2105" y1="50.00345" x2="33.2105" y2="21.59" width="0.635" layer="16"/>
-<wire x1="7.62" y1="54.61" x2="8.5725" y2="55.5625" width="0.635" layer="16"/>
-<wire x1="8.5725" y1="55.5625" x2="8.5725" y2="56.22645" width="0.635" layer="16"/>
-<wire x1="8.5725" y1="56.22645" x2="12.60755" y2="60.2615" width="0.635" layer="16"/>
-<wire x1="33.2105" y1="21.59" x2="34.4805" y2="20.32" width="0.635" layer="16"/>
-<wire x1="34.4805" y1="20.32" x2="39.37" y2="20.32" width="0.635" layer="16"/>
+<contactref element="DIGITAL" pad="6"/>
+<contactref element="FRONT_PANEL" pad="4"/>
+<wire x1="39.37" y1="33.02" x2="35.56" y2="33.02" width="0.635" layer="16"/>
+<wire x1="35.56" y1="33.02" x2="32.0675" y2="36.5125" width="0.635" layer="16"/>
+<wire x1="32.0675" y1="49.3339" x2="23.2989" y2="58.1025" width="0.635" layer="16"/>
+<wire x1="11.1125" y1="56.02956875" x2="11.1125" y2="55.5625" width="0.635" layer="16"/>
+<wire x1="11.1125" y1="55.5625" x2="10.16" y2="54.61" width="0.635" layer="16"/>
+<wire x1="13.18543125" y1="58.1025" x2="11.1125" y2="56.02956875" width="0.635" layer="16"/>
+<wire x1="32.0675" y1="36.5125" x2="32.0675" y2="49.3339" width="0.635" layer="16"/>
+<wire x1="23.2989" y1="58.1025" x2="13.18543125" y2="58.1025" width="0.635" layer="16"/>
 </signal>
 <signal name="REB_B">
-<contactref element="FRONT_PANEL" pad="3"/>
-<contactref element="DIGITAL" pad="15"/>
-<wire x1="14.58243125" y1="56.9595" x2="22.82545" y2="56.9595" width="0.635" layer="16"/>
-<wire x1="22.82545" y1="56.9595" x2="30.9245" y2="48.86045" width="0.635" layer="16"/>
-<wire x1="30.9245" y1="48.86045" x2="30.9245" y2="14.83005" width="0.635" layer="16"/>
-<wire x1="35.56" y1="10.19455" x2="35.56" y2="10.16" width="0.635" layer="16"/>
-<wire x1="30.9245" y1="14.83005" x2="35.56" y2="10.19455" width="0.635" layer="16"/>
-<wire x1="12.7" y1="54.61" x2="12.7" y2="55.07706875" width="0.635" layer="16"/>
-<wire x1="12.7" y1="55.07706875" x2="14.58243125" y2="56.9595" width="0.635" layer="16"/>
-<wire x1="35.56" y1="10.16" x2="39.37" y2="10.16" width="0.635" layer="16"/>
+<contactref element="DIGITAL" pad="5"/>
+<contactref element="FRONT_PANEL" pad="5"/>
+<wire x1="33.2105" y1="37.9095" x2="35.56" y2="35.56" width="0.635" layer="16"/>
+<wire x1="23.77235" y1="59.2455" x2="33.2105" y2="49.80735" width="0.635" layer="16"/>
+<wire x1="33.2105" y1="49.80735" x2="33.2105" y2="37.9095" width="0.635" layer="16"/>
+<wire x1="11.78843125" y1="59.2455" x2="7.62" y2="55.07706875" width="0.635" layer="16"/>
+<wire x1="7.62" y1="54.61" x2="7.62" y2="55.07706875" width="0.635" layer="16"/>
+<wire x1="11.78843125" y1="59.2455" x2="23.77235" y2="59.2455" width="0.635" layer="16"/>
+<wire x1="35.56" y1="35.56" x2="39.37" y2="35.56" width="0.635" layer="16"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

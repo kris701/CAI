@@ -18,22 +18,24 @@ private:
 	const uint8_t incrememtPin;
 	const uint8_t decrememtPin;
 	const uint8_t enterPin;
-	void (*incrementFunc)();
-	void (*decrementFunc)();
+	void (*doEncode)();
 	void (*enterFunc)();
 
 	void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 	void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 
 public:
-	RotaryButtonDriver(void (*incrementFunc)(), uint8_t incrememtPin, void (*decrementFunc)(), uint8_t decrememtPin, void (*enterFunc)(), uint8_t enterPin)
-		: incrementFunc(incrementFunc), incrememtPin(incrememtPin), decrementFunc(decrementFunc), decrememtPin(decrememtPin), enterFunc(enterFunc), enterPin(enterPin) 
+	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), uint8_t enterPin)
+		: incrememtPin(incrememtPin), decrememtPin(decrememtPin), doEncode(doEncodeFunc), enterFunc(enterFunc), enterPin(enterPin)
 	{
-		attachInterrupt(digitalPinToInterrupt(incrememtPin), incrementFunc, CHANGE);
-		attachInterrupt(digitalPinToInterrupt(decrememtPin), decrementFunc, CHANGE);
+		pinMode(incrememtPin, INPUT_PULLUP);
+		pinMode(decrememtPin, INPUT_PULLUP);
+
+		attachInterrupt(0, doEncode, CHANGE);
 		attachInterrupt(digitalPinToInterrupt(enterPin), enterFunc, CHANGE);
 	};
 
+	bool isClockwise();
 	void incrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 	void decrementMenuIndex(const MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 	void enterMenu(const MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
