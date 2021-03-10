@@ -1467,8 +1467,8 @@ CAP-08070</description>
 <instance part="P+4" gate="1" x="15.24" y="134.62" smashed="yes" rot="R90">
 <attribute name="VALUE" x="20.32" y="132.08" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="P+5" gate="1" x="55.88" y="78.74" smashed="yes">
-<attribute name="VALUE" x="53.34" y="73.66" size="1.778" layer="96" rot="R90"/>
+<instance part="P+5" gate="1" x="63.5" y="63.5" smashed="yes" rot="R270">
+<attribute name="VALUE" x="58.42" y="66.04" size="1.778" layer="96"/>
 </instance>
 <instance part="GND3" gate="1" x="63.5" y="78.74" smashed="yes" rot="R180">
 <attribute name="VALUE" x="63.5" y="81.28" size="1.778" layer="96" rot="R180"/>
@@ -1763,15 +1763,14 @@ CAP-08070</description>
 <pinref part="C4" gate="G$1" pin="+"/>
 </segment>
 <segment>
-<pinref part="ANALOG" gate="A" pin="15"/>
-<wire x1="48.26" y1="71.12" x2="55.88" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="P+5" gate="1" pin="+5V"/>
-<wire x1="55.88" y1="71.12" x2="55.88" y2="76.2" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="P+2" gate="1" pin="+5V"/>
 <pinref part="FRONT_PANEL" gate="A" pin="6"/>
 <wire x1="33.02" y1="20.32" x2="33.02" y2="12.7" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+5" gate="1" pin="+5V"/>
+<pinref part="ANALOG" gate="A" pin="12"/>
+<wire x1="60.96" y1="63.5" x2="48.26" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="D4" class="0">
