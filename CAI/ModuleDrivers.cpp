@@ -1,6 +1,6 @@
 #include "ModuleDrivers.h"
 
-void ModuleDriver::digitalSwitch(const uint8_t pin, bool state) {
+void ModuleDriver::digitalSwitch(bool state) {
 #if SERIAL_PRINT
 	Serial.print(F("Digital Switch( Pin: "));
 	Serial.print(pin);
@@ -11,7 +11,7 @@ void ModuleDriver::digitalSwitch(const uint8_t pin, bool state) {
 	digitalWrite(pin, state);
 }
 
-void ModuleDriver::analogSwitch(const uint8_t pin, uint8_t value) {
+void ModuleDriver::analogSwitch(uint8_t value) {
 #if SERIAL_PRINT
 	Serial.print(F("Analog Switch( Pin: "));
 	Serial.print(pin);
@@ -22,18 +22,18 @@ void ModuleDriver::analogSwitch(const uint8_t pin, uint8_t value) {
 	analogWrite(pin, value);
 }
 
-void ModuleDriver::motorControllerDigital(const uint8_t pinA, const uint8_t pinB, bool valueA, bool valueB) {
+void DualModuleDriver::motorControllerDigital(bool valueA, bool valueB) {
 #if SERIAL_PRINT
 	Serial.println(F("Digital Motor Switch"));
 #endif
-	digitalSwitch(pinA, valueA);
-	digitalSwitch(pinB, valueB);
+	driverA.digitalSwitch(valueA);
+	driverA.digitalSwitch(valueB);
 }
 
-void ModuleDriver::motorControllerAnalog(const uint8_t pinA, const uint8_t pinB, uint8_t valueA, uint8_t valueB) {
+void DualModuleDriver::motorControllerAnalog(uint8_t valueA, uint8_t valueB) {
 #if SERIAL_PRINT
 	Serial.println(F("Analog Motor Switch"));
 #endif
-	analogSwitch(pinA, valueA);
-	analogSwitch(pinB, valueB);
+	driverA.analogSwitch(valueA);
+	driverA.analogSwitch(valueB);
 }

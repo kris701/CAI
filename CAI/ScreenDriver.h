@@ -37,9 +37,9 @@
 #endif
 
 class ScreenDriver {
-	GET_Property(const uint8_t, screenWidth)
-	GET_Property(const uint8_t, screenHeight)
-	GET_Property(const uint8_t, screenReset)
+	GET_PSET_Property(uint8_t, screenWidth)
+	GET_PSET_Property(uint8_t, screenHeight)
+	GET_PSET_Property(uint8_t, screenReset)
 
 private:
 	Adafruit_SSD1306 display;
@@ -49,8 +49,11 @@ private:
 	void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
 	
 public:
-	ScreenDriver(const uint8_t screenWidth, const uint8_t screenHeight, const uint8_t screenReset) 
-		: screenWidth(screenWidth), screenHeight(screenHeight), screenReset(screenReset){};
+	ScreenDriver(uint8_t screenWidth, uint8_t screenHeight, uint8_t screenReset){
+		SetscreenWidth(screenWidth);
+		SetscreenHeight(screenHeight);
+		SetscreenReset(screenReset);
+	};
 
 	void startDisplay();
 	void printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);

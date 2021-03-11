@@ -16,19 +16,28 @@
 #define FC(string_constant) (reinterpret_cast<const __FlashStringHelper *>(string_constant))
 
 class MenuItem {
-	GET_Property(const uint8_t, menuID)
-	GET_Property(const uint8_t, parentID)
+	GET_PSET_Property(uint8_t, menuID)
+	GET_PSET_Property(uint8_t, parentID)
 	GET_Property(const __FlashStringHelper*, name)
 
 public:
 	void(*command)(void);
 
-	MenuItem(const uint8_t menuID, const uint8_t parentID, char* name, void(*command)(void)) 
-		: command(command), name(FC(name)), menuID(menuID), parentID(parentID) {};
-	MenuItem(const uint8_t menuID, const uint8_t parentID, const char* name, void(*command)(void)) 
-		: command(command), name(FC(name)), menuID(menuID), parentID(parentID) {};
-	MenuItem(const uint8_t menuID, const uint8_t parentID, __FlashStringHelper* name, void(*command)(void)) 
-		: command(command), name(name), menuID(menuID), parentID(parentID) {};
+	MenuItem(uint8_t menuID, uint8_t parentID, char* name, void(*command)(void)) 
+		: command(command), name(FC(name)) {
+		this->SetmenuID(menuID);
+		this->SetparentID(parentID);
+	};
+	MenuItem(uint8_t menuID, uint8_t parentID, const char* name, void(*command)(void)) 
+		: command(command), name(FC(name)) {
+		this->SetmenuID(menuID);
+		this->SetparentID(parentID);
+	};
+	MenuItem(uint8_t menuID, uint8_t parentID, __FlashStringHelper* name, void(*command)(void)) 
+		: command(command), name(name) {
+		this->SetmenuID(menuID);
+		this->SetparentID(parentID);
+	};
 };
 
 #endif

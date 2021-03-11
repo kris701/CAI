@@ -13,14 +13,42 @@
 	#include "CAI.h"
 #endif
 
-class ModuleDriver {
-public:
-	ModuleDriver() {};
+#define ISVALIDPIN(p) ((p) == DIGITAL_A || (p) == DIGITAL_B)
 
-	void digitalSwitch(const uint8_t pin, bool state);
-	void analogSwitch(const uint8_t pin, uint8_t value);
-	void motorControllerDigital(const uint8_t pinA, const uint8_t pinB, bool valueA, bool valueB);
-	void motorControllerAnalog(const uint8_t pinA, const uint8_t pinB, uint8_t valueA, uint8_t valueB);
+class ModuleDriver {
+private:
+	GET_PMSET_Property(uint8_t, pin,
+		{
+			if (!ISVALIDPIN(value))
+				Serial.println(F("Bad pin!"));
+			pin = value;
+		}
+	)
+
+public:
+	ModuleDriver();
+	ModuleDriver(uint8_t pin) {
+		Setpin(pin);
+	};
+
+	void ModuleDriver::digitalSwitch(bool state);
+	void ModuleDriver::analogSwitch(uint8_t value);
+};
+
+class DualModuleDriver {
+private:
+	GET_PSET_Property(ModuleDriver, driverA)
+	GET_PSET_Property(ModuleDriver, driverB)
+
+public:
+	DualModuleDriver();
+	DualModuleDriver(uint8_t pinA, uint8_t pinB) {
+		SetdriverA(ModuleDriver(pinA));
+		SetdriverB(ModuleDriver(pinB));
+	};
+
+	void DualModuleDriver::motorControllerDigital(bool valueA, bool valueB);
+	void DualModuleDriver::motorControllerAnalog(uint8_t valueA, uint8_t valueB);
 };
 
 #endif

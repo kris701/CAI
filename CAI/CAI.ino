@@ -17,7 +17,6 @@ void EnterMenu();
 
 RotaryButtonDriver rotaryButtonDriver(Interface_InrementRotationPin, Interface_DecrementRotationPin, DoEncode, EnterMenu, Interface_EnterPin);
 ScreenDriver screenDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET);
-ModuleDriver moduleDriver = {};
 
 uint8_t menuIndex = 1;
 uint8_t currentMenuIndex = 0;
@@ -26,11 +25,8 @@ uint8_t currentMenuIndex = 0;
 
 #pragma region Configuration
 
-void setupPins() {
-	// insert pinMode here
-	pinMode(DIGITAL_A, OUTPUT);
-	pinMode(DIGITAL_B, OUTPUT);
-}
+ModuleDriver DigitalADriver(1);
+ModuleDriver DigitalBDriver(DIGITAL_B);
 
 void turnLEDON();
 void turnLEDOFF();
@@ -65,10 +61,12 @@ void setup()
 	delay(100);
 #endif
 
-	setupPins();
 	screenDriver.startDisplay();
 	screenDriver.printIntro();
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+
+	EnterMenu();
+	EnterMenu();
 }
 
 void loop() { delay(100); }
@@ -111,22 +109,22 @@ void backMethod()
 
 void turnLEDON()
 {
-	moduleDriver.digitalSwitch(DIGITAL_A, 1);
+	DigitalADriver.digitalSwitch(1);
 }
 
 void turnLEDOFF()
 {
-	moduleDriver.digitalSwitch(DIGITAL_A, 0);
+	DigitalADriver.digitalSwitch(0);
 }
 
 void turnFANON()
 {
-	moduleDriver.analogSwitch(DIGITAL_B, 250);
+	DigitalBDriver.analogSwitch(150);
 }
 
 void turnFANOFF()
 {
-	moduleDriver.analogSwitch(DIGITAL_B, 5);
+	DigitalBDriver.analogSwitch(50);
 }
 
 
