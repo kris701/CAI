@@ -366,3 +366,7 @@ FodyWeavers.xsd
 CAI/Libraries
 CAI/__vm
 CAI/Debug
+*.gcode
+*.pro
+*.s#*
+*.b#*
