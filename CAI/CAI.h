@@ -30,6 +30,10 @@ const char PROGMEM TEXT_OFF[] = "Off";
 const char PROGMEM TEXT_BACK[] = "Back";
 #endif 
 
+#ifdef SERIAL_PRINT && SERIAL_PRINT == true
+	#pragma message "Warning: Serial print is on!"
+#endif
+
 
 #ifndef _SCREENLIB
 	#define _SCREENLIB

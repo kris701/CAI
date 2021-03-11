@@ -61,7 +61,7 @@ void setup()
 {
 #if SERIAL_PRINT
 	Serial.begin(115200);
-	Serial.println(F("Starting..."));
+	Serial.println(F("Warning: Serial print is on!"));
 	delay(100);
 #endif
 
