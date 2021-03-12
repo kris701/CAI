@@ -35,7 +35,6 @@ const char PROGMEM TEXT_BACK[] = "Back";
 	#pragma message "Warning: Serial print is on!"
 #endif
 
-
 #ifndef _SCREENLIB
 	#define _SCREENLIB
 	#include <splash.h>

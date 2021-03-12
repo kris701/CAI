@@ -25,18 +25,18 @@ public:
 
 	MenuItem(uint8_t menuID, uint8_t parentID, char* name, void(*command)(void)) 
 		: command(command), name(FC(name)) {
-		this->SetmenuID(menuID);
-		this->SetparentID(parentID);
+		SetmenuID(menuID);
+		SetparentID(parentID);
 	};
 	MenuItem(uint8_t menuID, uint8_t parentID, const char* name, void(*command)(void)) 
 		: command(command), name(FC(name)) {
-		this->SetmenuID(menuID);
-		this->SetparentID(parentID);
+		SetmenuID(menuID);
+		SetparentID(parentID);
 	};
 	MenuItem(uint8_t menuID, uint8_t parentID, __FlashStringHelper* name, void(*command)(void)) 
 		: command(command), name(name) {
-		this->SetmenuID(menuID);
-		this->SetparentID(parentID);
+		SetmenuID(menuID);
+		SetparentID(parentID);
 	};
 };
 
