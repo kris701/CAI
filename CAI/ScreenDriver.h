@@ -37,16 +37,30 @@
 #endif
 
 class ScreenDriver {
-	GET_PSET_Property(uint8_t, screenWidth)
-	GET_PSET_Property(uint8_t, screenHeight)
+	GET_PMSET_Property(uint8_t, screenWidth, 
+		{
+			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
+				CHECKVALUE(value, screenWidth, ScreenDriver)
+			#endif
+			screenWidth = value;
+		}
+	)
+	GET_PMSET_Property(uint8_t, screenHeight,
+		{
+			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
+				CHECKVALUE(value, screenHeight, ScreenDriver)
+			#endif
+			screenHeight = value;
+		}
+	)
 	GET_PSET_Property(uint8_t, screenReset)
 
 private:
 	Adafruit_SSD1306 display;
 
-	void printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
-	void printText(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
-	void setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
+	void ScreenDriver::printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
+	void ScreenDriver::printText(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
+	void ScreenDriver::setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
 	
 public:
 	ScreenDriver(uint8_t screenWidth, uint8_t screenHeight, uint8_t screenReset){
@@ -55,9 +69,9 @@ public:
 		SetscreenReset(screenReset);
 	};
 
-	void startDisplay();
-	void printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
-	void printIntro();
+	void ScreenDriver::startDisplay();
+	void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
+	void ScreenDriver::printIntro();
 };
 
 #endif

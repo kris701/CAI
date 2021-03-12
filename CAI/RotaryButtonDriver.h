@@ -23,8 +23,8 @@ class RotaryButtonDriver {
 	GET_PSET_Property(uint8_t, enterPin)
 
 private:
-	void incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
-	void decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
+	void RotaryButtonDriver::incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
+	void RotaryButtonDriver::decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 
 public:
 	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), uint8_t enterPin)
@@ -41,10 +41,10 @@ public:
 		attachInterrupt(digitalPinToInterrupt(enterPin), enterFunc, FALLING);
 	};
 
-	bool isClockwise();
-	void incrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-	void decrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-	void enterMenu(MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	bool RotaryButtonDriver::isClockwise();
+	void RotaryButtonDriver::incrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void RotaryButtonDriver::decrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void RotaryButtonDriver::enterMenu(MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
 };
 
 #endif

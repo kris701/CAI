@@ -31,6 +31,22 @@
 	private: void Set##name(T value)setMethod				\
 	public: T Get##name()getMethod							\
 
+#define ISVALIDPIN(p) (p == DIGITAL_A || p == DIGITAL_B || p == DIGITAL_C || p == MOTOR_A_1 || p == MOTOR_A_2 || p == MOTOR_B_1 || p == MOTOR_B_2 || p == ANALOG_A || p == ANALOG_B)
+#define GETVARNAME(p) #p
+
+#define CHECKVALUE(value, attemptedValue, className)		\
+if (value == 0)												\
+{															\
+	Serial.begin(115200);									\
+	Serial.print(F("Warning, invalid value for '"));		\
+	Serial.print(GETVARNAME(attemptedValue));				\
+	Serial.print(F("' set to '"));							\
+	Serial.print(value);									\
+	Serial.print(F("' (in "));								\
+	Serial.print(GETVARNAME(className));					\
+	Serial.println(F(")"));									\
+	Serial.flush();											\
+}															\
 
 #endif
 

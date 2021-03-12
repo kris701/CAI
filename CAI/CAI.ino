@@ -25,7 +25,7 @@ uint8_t currentMenuIndex = 0;
 
 #pragma region Configuration
 
-ModuleDriver DigitalADriver(1);
+ModuleDriver DigitalADriver(DIGITAL_A);
 ModuleDriver DigitalBDriver(DIGITAL_B);
 
 void turnLEDON();
@@ -56,8 +56,10 @@ MenuItem menuTree[MENU_TREE_SIZE] = {
 void setup()
 {
 #if SERIAL_PRINT
+	Serial.flush();
 	Serial.begin(115200);
 	Serial.println(F("Warning: Serial print is on!"));
+	Serial.println(F("Starting..."));
 	delay(100);
 #endif
 

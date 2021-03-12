@@ -25,10 +25,9 @@ void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_
 #if SERIAL_PRINT
 			Serial.print(F("Titel: "));
 			Serial.println(menuTree[i].Getname());
-#else
-			printText(F("Titel: "));
-			printText(menuTree[i].name, 8);
 #endif
+			printText(F("Titel: "));
+			printText(menuTree[i].Getname(), 8);
 		}
 		if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
 		{
@@ -38,13 +37,12 @@ void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_
 			else
 				Serial.print(F(":   "));
 			Serial.println(menuTree[i].Getname());
-#else
+#endif
 			if (i == menuIndex)
 				printText(F(":=> "));
 			else
 				printText(F(":   "));
-			printText(menuTree[i].name, 5);
-#endif
+			printText(menuTree[i].Getname(), 5);
 		}
 	}
 	display.display();

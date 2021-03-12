@@ -13,14 +13,16 @@
 	#include "CAI.h"
 #endif
 
-#define ISVALIDPIN(p) ((p) == DIGITAL_A || (p) == DIGITAL_B)
+#ifndef _MACROS_h
+	#include "Macros.h"
+#endif
 
 class ModuleDriver {
-private:
 	GET_PMSET_Property(uint8_t, pin,
 		{
-			if (!ISVALIDPIN(value))
-				Serial.println(F("Bad pin!"));
+			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
+				CHECKVALUE(value, pin, ModuleDriver)
+			#endif
 			pin = value;
 		}
 	)

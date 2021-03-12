@@ -8,6 +8,7 @@
 #endif
 
 #define SERIAL_PRINT true
+#define SERIAL_DEBUG true
 #define USE_TEXT_DEFAULTS true
 
 #define DIGITAL_A 4
