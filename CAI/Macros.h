@@ -34,8 +34,8 @@
 #define ISVALIDPIN(p) (p == DIGITAL_A || p == DIGITAL_B || p == DIGITAL_C || p == MOTOR_A_1 || p == MOTOR_A_2 || p == MOTOR_B_1 || p == MOTOR_B_2 || p == ANALOG_A || p == ANALOG_B)
 #define GETVARNAME(p) #p
 
-#define CHECKVALUE(value, attemptedValue, className)		\
-if (value == 0)												\
+#define CHECKVALUE(condition, attemptedValue, className)	\
+if (condition)												\
 {															\
 	Serial.begin(115200);									\
 	Serial.print(F("Warning, invalid value for '"));		\

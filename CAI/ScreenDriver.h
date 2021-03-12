@@ -40,7 +40,7 @@ class ScreenDriver {
 	GET_PMSET_Property(uint8_t, screenWidth, 
 		{
 			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
-				CHECKVALUE(value, screenWidth, ScreenDriver)
+				CHECKVALUE(value == 0, screenWidth, ScreenDriver)
 			#endif
 			screenWidth = value;
 		}
@@ -48,7 +48,7 @@ class ScreenDriver {
 	GET_PMSET_Property(uint8_t, screenHeight,
 		{
 			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
-				CHECKVALUE(value, screenHeight, ScreenDriver)
+				CHECKVALUE(value == 0, screenHeight, ScreenDriver)
 			#endif
 			screenHeight = value;
 		}

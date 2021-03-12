@@ -21,7 +21,7 @@ class ModuleDriver {
 	GET_PMSET_Property(uint8_t, pin,
 		{
 			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
-				CHECKVALUE(value, pin, ModuleDriver)
+				CHECKVALUE(!ISVALIDPIN(value), pin, ModuleDriver)
 			#endif
 			pin = value;
 		}
