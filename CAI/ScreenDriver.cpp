@@ -34,16 +34,16 @@ void ScreenDriver::startDisplay() {
 
 	display.clearDisplay();
 
-	display.setFont(font, fontWidth, fontHeight);
+	display.setFont(font, GetfontWidth(), GetfontHeight());
 }
 
 void ScreenDriver::printHeader() {
 	display.clearDisplay();
-	setVCursor(leftMargin, 2);
-	display.fillRect(0, 0, screenWidth, fontHeight + 2, WHITE);
+	setVCursor(GetleftMargin(), 2);
+	display.fillRect(0, 0, GetscreenWidth(), GetfontHeight() + 2, WHITE);
 	display.setTextColor(BLACK, TRANSPARENT);
 	printTextln(F("CAI 1.0"), true);
-	setVCursor(leftMargin, fontHeight + 7);
+	setVCursor(GetleftMargin(), GetfontHeight() + 7);
 }
 
 void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
@@ -168,7 +168,7 @@ void ScreenDriver::setTextSettings()
 }
 
 void ScreenDriver::printIntro() {
-	printTextxy(F("CAI"), 5, 5);
+	printTextxy(F("CAI Starting..."), 20, 32);
 	delay(2000);
 	display.clearDisplay();
 }

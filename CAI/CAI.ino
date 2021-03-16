@@ -73,6 +73,7 @@ void setup()
 	screenDriver.printIntro();
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 
+	// Testing code:
 	while (true)
 	{
 		rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
@@ -98,8 +99,9 @@ void DoEncode() {
 
 void EnterMenu()
 {
+	// Interupt pin is floating rigth now, commented out for now
 	//rotaryButtonDriver.enterMenu(menuTree, &currentMenuIndex, &menuIndex);
-	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	//screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
 
