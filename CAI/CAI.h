@@ -7,8 +7,8 @@
 #include "WProgram.h"
 #endif
 
-#define SERIAL_PRINT true
-#define SERIAL_DEBUG true
+#define SERIAL_PRINT false
+#define SERIAL_DEBUG false
 #define USE_TEXT_DEFAULTS true
 
 #define DIGITAL_A 4
@@ -24,35 +24,13 @@
 #define ANALOG_A A7
 #define ANALOG_B A6
 
-#ifdef USE_TEXT_DEFAULTS && USE_TEXT_DEFAULTS == true
-const char PROGMEM TEXT_MAINMENU[] = "Main Menu";
-const char PROGMEM TEXT_ON[] = "On";
-const char PROGMEM TEXT_OFF[] = "Off";
-const char PROGMEM TEXT_BACK[] = "Back";
+#ifdef USE_TEXT_DEFAULTS
+	#if USE_TEXT_DEFAULTS == true
+		const char PROGMEM TEXT_MAINMENU[] = "Main Menu";
+		const char PROGMEM TEXT_ON[] = "On";
+		const char PROGMEM TEXT_OFF[] = "Off";
+		const char PROGMEM TEXT_BACK[] = "Back";
+	#endif 
 #endif 
-
-#ifdef SERIAL_PRINT && SERIAL_PRINT == true
-	#pragma message "Warning: Serial print is on!"
-#endif
-
-#ifndef _SCREENLIB
-	#define _SCREENLIB
-	#include <splash.h>
-	#include <Adafruit_SSD1306.h>
-	#include <gfxfont.h>
-	#include <Adafruit_SPITFT_Macros.h>
-	#include <Adafruit_SPITFT.h>
-	#include <Adafruit_GrayOLED.h>
-	#include <Adafruit_GFX.h>
-	#include <Adafruit_SPIDevice.h>
-	#include <Adafruit_I2CRegister.h>
-	#include <Adafruit_I2CDevice.h>
-	#include <Adafruit_BusIO_Register.h>
-#endif
-
-#include "Classes.h"
-#include "ModuleDrivers.h"
-#include "RotaryButtonDriver.h"
-#include "ScreenDriver.h"
 
 #endif

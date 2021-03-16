@@ -1,4 +1,8 @@
 #include "CAI.h"
+#include "Classes.h"
+#include "ScreenDriver.h"
+#include "ModuleDrivers.h"
+#include "RotaryButtonDriver.h"
 
 #pragma region Setup
 
@@ -6,17 +10,15 @@
 #define Interface_DecrementRotationPin 11
 #define Interface_EnterPin 3
 
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
 #define OLED_RESET     -1
 
-#define MENU_TREE_SIZE 9
+#define MENU_TREE_SIZE 13
 
 void DoEncode();
 void EnterMenu();
 
+ScreenDriver screenDriver = ScreenDriver();
 RotaryButtonDriver rotaryButtonDriver(Interface_InrementRotationPin, Interface_DecrementRotationPin, DoEncode, EnterMenu, Interface_EnterPin);
-ScreenDriver screenDriver(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_RESET);
 
 uint8_t menuIndex = 1;
 uint8_t currentMenuIndex = 0;
@@ -47,6 +49,10 @@ MenuItem menuTree[MENU_TREE_SIZE] = {
 			{-1,2, TEXT_ON, turnFANON},
 			{-1,2, TEXT_OFF, turnFANOFF},
 			{-1,2, TEXT_BACK, backMethod},
+		{3,0, TEXT_FAN, NULL},
+		{4,0, TEXT_FAN, NULL},
+		{5,0, TEXT_FAN, NULL},
+		{6,0, TEXT_FAN, NULL}
 };
 
 #pragma endregion
@@ -67,8 +73,12 @@ void setup()
 	screenDriver.printIntro();
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 
-	EnterMenu();
-	EnterMenu();
+	while (true)
+	{
+		rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+		screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+		delay(1000);
+	}
 }
 
 void loop() { delay(100); }
@@ -88,7 +98,7 @@ void DoEncode() {
 
 void EnterMenu()
 {
-	rotaryButtonDriver.enterMenu(menuTree, &currentMenuIndex, &menuIndex);
+	//rotaryButtonDriver.enterMenu(menuTree, &currentMenuIndex, &menuIndex);
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 

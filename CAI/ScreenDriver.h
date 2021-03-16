@@ -3,29 +3,8 @@
 #ifndef _SCREENDRIVER_h
 #define _SCREENDRIVER_h
 
-#if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
-#else
-	#include "WProgram.h"
-#endif
-
 #ifndef _CLASSES_h
 	#include "Classes.h"
-#endif
-
-#ifndef _SCREENLIB
-	#define _SCREENLIB
-	#include <splash.h>
-	#include <Adafruit_SSD1306.h>
-	#include <gfxfont.h>
-	#include <Adafruit_SPITFT_Macros.h>
-	#include <Adafruit_SPITFT.h>
-	#include <Adafruit_GrayOLED.h>
-	#include <Adafruit_GFX.h>
-	#include <Adafruit_SPIDevice.h>
-	#include <Adafruit_I2CRegister.h>
-	#include <Adafruit_I2CDevice.h>
-	#include <Adafruit_BusIO_Register.h>
 #endif
 
 #ifndef _CAI_h
@@ -53,20 +32,38 @@ class ScreenDriver {
 			screenHeight = value;
 		}
 	)
-	GET_PSET_Property(uint8_t, screenReset)
+	GET_PSET_Property(uint8_t, currentX)
+	GET_PSET_Property(uint8_t, currentY)
+	GET_PSET_Property(uint8_t, fontHeight)
+	GET_PSET_Property(uint8_t, fontWidth)
+	GET_PSET_Property(uint8_t, leftMargin)
+	GET_PSET_Property(uint8_t, menuLength)
 
 private:
-	Adafruit_SSD1306 display;
+	char buffer[50];
 
-	void ScreenDriver::printText(const char* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
-	void ScreenDriver::printText(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, uint8_t textSize = 1, bool print = false);
-	void ScreenDriver::setTextSettings(uint8_t x, uint8_t y, uint8_t textSize);
+	unsigned int ScreenDriver::FSHlength(const __FlashStringHelper* FSHinput);
+	void ScreenDriver::setVCursor(uint8_t x = 0, uint8_t y = 0);
+
+	void ScreenDriver::printTextxy(const char* text, uint8_t x = 0, uint8_t y = 0, bool manualTextSettings = false);
+	void ScreenDriver::printTextxy(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, bool manualTextSettings = false);
+	void ScreenDriver::printText(const char* text, bool manualTextSettings = false);
+	void ScreenDriver::printText(const __FlashStringHelper* text, bool manualTextSettings = false);
+	void ScreenDriver::printTextln(const char* text, bool manualTextSettings = false);
+	void ScreenDriver::printTextln(const __FlashStringHelper* text, bool manualTextSettings = false);
+	void ScreenDriver::printHeader();
+
+	void ScreenDriver::setTextSettings(uint8_t x, uint8_t y);
+	void ScreenDriver::setTextSettings();
 	
 public:
-	ScreenDriver(uint8_t screenWidth, uint8_t screenHeight, uint8_t screenReset){
-		SetscreenWidth(screenWidth);
-		SetscreenHeight(screenHeight);
-		SetscreenReset(screenReset);
+	ScreenDriver(){
+		SetscreenWidth(128);
+		SetscreenHeight(64);
+		SetfontHeight(8);
+		SetfontWidth(5);
+		SetleftMargin(5);
+		SetmenuLength(4);
 	};
 
 	void ScreenDriver::startDisplay();
