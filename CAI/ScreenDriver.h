@@ -51,7 +51,6 @@ class ScreenDriver {
 	GET_PSET_Property(Rectangle, lastRect)
 
 private:
-	char buffer[25];
 	const Rectangle headerRect = {0, 0, 127, 11};
 	const Rectangle cursorRect = { 0, 22, 19, 41 };
 	const Rectangle menuHeaderRect = { 20, 12, 97, 9 };
