@@ -10,8 +10,6 @@
 #define Interface_DecrementRotationPin 11
 #define Interface_EnterPin 3
 
-#define OLED_RESET     -1
-
 #define MENU_TREE_SIZE 13
 
 void DoEncode();
@@ -139,11 +137,10 @@ void DoEncode() {
 void EnterMenu()
 {
 	// Interupt pin is floating rigth now, commented out for now
-	//rotaryButtonDriver.enterMenu(menuTree, &currentMenuIndex, &menuIndex);
+	//screenDriver.printEnterMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	//rotaryButtonDriver.enterMenu(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
 	//screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
-
-
 
 void backMethod()
 {
