@@ -30,8 +30,6 @@ static SH1106Lib display;
 void ScreenDriver::startDisplay() {
 	display.initialize();
 
-	delay(2000);
-
 	display.clearDisplay();
 
 	display.setFont(font, fontWidth, fontHeight);
@@ -182,7 +180,7 @@ void ScreenDriver::setTextSettings(uint8_t x, uint8_t y, uint8_t frontColor, uin
 }
 
 void ScreenDriver::printIntro() {
-	printText(F("CAI Starting..."), menuItemsRect);
+	printText(F("CAI Starting..."), menuItemsRect, 0, 10);
 	delay(2000);
 	display.clearDisplay();
 	printHeader();

@@ -15,14 +15,14 @@
 
 class RotaryButtonDriver {
 private:
-	uint8_t incrememtPin;
-	uint8_t decrememtPin;
-	uint8_t enterPin;
+	const uint8_t incrememtPin;
+	const uint8_t decrememtPin;
+	const uint8_t enterPin;
 	void RotaryButtonDriver::incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 	void RotaryButtonDriver::decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 
 public:
-	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), uint8_t enterPin)
+	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, uint8_t enterPin, void (*doEncodeFunc)(), void (*enterFunc)())
 		: incrememtPin(incrememtPin), decrememtPin(decrememtPin), enterPin(enterPin)
 	{
 		pinMode(incrememtPin, INPUT_PULLUP);

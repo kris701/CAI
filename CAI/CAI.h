@@ -23,13 +23,12 @@
 #define ANALOG_A A7
 #define ANALOG_B A6
 
-#ifdef USE_TEXT_DEFAULTS
-	#if USE_TEXT_DEFAULTS == true
-		const char PROGMEM TEXT_MAINMENU[] = "Main Menu";
-		const char PROGMEM TEXT_ON[] = "On";
-		const char PROGMEM TEXT_OFF[] = "Off";
-		const char PROGMEM TEXT_BACK[] = "Back";
-	#endif 
-#endif 
+#define Interface_InrementRotationPin 2
+#define Interface_DecrementRotationPin 11
+#define Interface_EnterPin 3
+
+void backMethod();
+void DoEncode();
+void EnterMenu();
 
 #endif

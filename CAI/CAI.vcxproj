@@ -109,12 +109,14 @@
     <ClInclude Include="ModuleDrivers.h" />
     <ClInclude Include="RotaryButtonDriver.h" />
     <ClInclude Include="ScreenDriver.h" />
+    <ClInclude Include="Systems.h" />
     <ClInclude Include="__vm\.CAI.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleDrivers.cpp" />
     <ClCompile Include="RotaryButtonDriver.cpp" />
     <ClCompile Include="ScreenDriver.cpp" />
+    <ClCompile Include="Systems.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
