@@ -68,15 +68,15 @@ void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_
 		}
 	}
 
-	if (isClick) 
+	if (isClick)
 	{
-		printMenuItems(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex, menuIndex);
+		hightlightMenuItem(menuTree, treeSize, currentMenuIndex, printMenuIndex, printArrowIndex);
 	}
 	else
 	{
 		printMenuHeader(menuTree, currentMenuIndex);
 		printPageArrows(currentMenuIndex, printArrowPage, printMenuPage);
-		printMenuItems(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex, -1);
+		printMenuItems(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex);
 		printCursor(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex);
 		SetlastMenuIndex(currentMenuIndex);
 	}
@@ -101,7 +101,7 @@ void ScreenDriver::printPageArrows(uint8_t currentMenuIndex, uint8_t printArrowP
 	}
 }
 
-void ScreenDriver::printMenuItems(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex, uint8_t menuIndex) {
+void ScreenDriver::printMenuItems(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
 	if (GetlastMenu() != printArrowPage || GetlastMenuIndex() != currentMenuIndex)
 	{
 		printRect(menuItemsRect, BLACK);
@@ -113,17 +113,35 @@ void ScreenDriver::printMenuItems(MenuItem menuTree[], const uint8_t treeSize, u
 				if (printIndex >= GetmenuLength())
 					break;
 				printIndex++;
-				if (i == menuIndex)
-				{
-					Rectangle coverText = { menuItemsRect.x, GetcurrentY(), menuItemsRect.width, GetfontHeight()};
-					printRect(coverText, WHITE);
-					printTextln(menuTree[i].Getname(), menuItemsRect, 0, 0, BLACK, TRANSPARENT);
-				}
-				else
-					printTextln(menuTree[i].Getname(), menuItemsRect);
+				printTextln(menuTree[i].Getname(), menuItemsRect);
 			}
 		}
 		SetlastMenu(printArrowPage);
+	}
+}
+
+void ScreenDriver::hightlightMenuItem(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printMenuIndex, uint8_t printArrowIndex) {
+	if (GetlastCursorIndex() != printArrowIndex || GetlastMenuIndex() != currentMenuIndex)
+	{
+		printRect(cursorRect, BLACK);
+
+		int printIndex = 0;
+		for (uint8_t i = printMenuIndex; i < treeSize; i++)
+		{
+			if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
+			{
+				if (i == printArrowIndex)
+				{
+					Rectangle coverText = { menuItemsRect.x, GetcurrentY() - GetfontHeight(), menuItemsRect.width, GetfontHeight() };
+					printRect(coverText, WHITE);
+					break;
+				}
+				if (printIndex >= GetmenuLength())
+					break;
+				printIndex++;
+			}
+		}
+		SetlastCursorIndex(printArrowIndex);
 	}
 }
 
