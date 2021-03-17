@@ -49,35 +49,51 @@ void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_
 	uint8_t printMenuPage = 0;
 	uint8_t printArrowIndex = 0;
 	uint8_t printArrowPage = 0;
+	uint8_t printArrowPageIndex = 0;
+
+	bool keepBufferingPage = true;
+	bool keepBuffering = true;
+
 	for (uint8_t i = 0; i < treeSize; i++)
 	{
 		if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
 		{
-			if ((printIndex % menuLength) == 0)
+			if ((printIndex % menuLength) == 0 && printIndex != 0)
 			{
+				if (!keepBufferingPage)
+					keepBuffering = false;
 				printMenuPage++;
 				if (printArrowIndex == 0)
 					printMenuIndex = i;
 			}
 			if (i == menuIndex)
 			{
+				keepBufferingPage = false;
+				printArrowPageIndex = printIndex % menuLength;
 				printArrowIndex = i;
 				printArrowPage = printMenuPage;
 			}
+
+			if (keepBuffering)
+				menuBuffer[(printIndex % menuLength)] = i;
+
 			printIndex++;
 		}
 	}
+	if (printIndex % menuLength != 0 && keepBuffering)
+		for (uint8_t i = (printIndex % menuLength); i < menuLength; i++)
+			menuBuffer[i] = UINT8_MAX;
 
 	if (isClick)
 	{
-		hightlightMenuItem(menuTree, treeSize, currentMenuIndex, printMenuIndex, printArrowIndex);
+		hightlightMenuItem(currentMenuIndex, printArrowIndex, printArrowPageIndex);
 	}
 	else
 	{
 		printMenuHeader(menuTree, currentMenuIndex);
 		printPageArrows(currentMenuIndex, printArrowPage, printMenuPage);
-		printMenuItems(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex);
-		printCursor(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex);
+		printMenuItems(menuTree, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex);
+		printCursor(currentMenuIndex, printArrowIndex, printArrowPageIndex);
 		lastMenuIndex = currentMenuIndex;
 	}
 }
@@ -96,75 +112,41 @@ void ScreenDriver::printPageArrows(uint8_t currentMenuIndex, uint8_t printArrowP
 		printRect(pageArrowRect, BLACK);
 		if (printMenuPage > printArrowPage)
 			printText(F("v"), pageArrowRect, 0, 40);
-		if (printArrowPage > 1)
+		if (printArrowPage > 0)
 			printText(F("^"), pageArrowRect, 0, 5);
 	}
 }
 
-void ScreenDriver::printMenuItems(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
+void ScreenDriver::printMenuItems(MenuItem menuTree[], uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
 	if (lastMenu != printArrowPage || lastMenuIndex != currentMenuIndex)
 	{
 		printRect(menuItemsRect, BLACK);
-		int printIndex = 0;
-		for (uint8_t i = printMenuIndex; i < treeSize; i++)
+		for (uint8_t i = 0; i < menuLength; i++)
 		{
-			if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
-			{
-				if (printIndex >= menuLength)
-					break;
-				printIndex++;
-				printTextln(menuTree[i].name, menuItemsRect);
-			}
+			if (menuBuffer[i] != UINT8_MAX)
+				printTextln(menuTree[menuBuffer[i]].name, menuItemsRect);
 		}
 		lastMenu = printArrowPage;
 	}
 }
 
-void ScreenDriver::hightlightMenuItem(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printMenuIndex, uint8_t printArrowIndex) {
+void ScreenDriver::hightlightMenuItem(uint8_t currentMenuIndex, uint8_t printArrowIndex, uint8_t printArrowPageIndex) {
 	if (lastCursorIndex != printArrowIndex || lastMenuIndex != currentMenuIndex)
 	{
-		printRect(cursorRect, BLACK);
+		Rectangle coverText = { menuItemsRect.x, menuItemsRect.y + fontHeight * printArrowPageIndex, menuItemsRect.width, fontHeight };
+		printRect(coverText, WHITE);
 
-		int printIndex = 0;
-		for (uint8_t i = printMenuIndex; i < treeSize; i++)
-		{
-			if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
-			{
-				if (i == printArrowIndex)
-				{
-					Rectangle coverText = { menuItemsRect.x, currentY - fontHeight, menuItemsRect.width, fontHeight };
-					printRect(coverText, WHITE);
-					break;
-				}
-				if (printIndex >= menuLength)
-					break;
-				printIndex++;
-			}
-		}
 		lastCursorIndex = printArrowIndex;
 	}
 }
 
-void ScreenDriver::printCursor(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
+void ScreenDriver::printCursor(uint8_t currentMenuIndex, uint8_t printArrowIndex, uint8_t printArrowPageIndex) {
 	if (lastCursorIndex != printArrowIndex || lastMenuIndex != currentMenuIndex)
 	{
 		printRect(cursorRect, BLACK);
 
-		int printIndex = 0;
-		for (uint8_t i = printMenuIndex; i < treeSize; i++)
-		{
-			if (menuTree[i].parentID == menuTree[currentMenuIndex].menuID)
-			{
-				if (i == printArrowIndex)
-				{
-					printTextln(F("=>"), cursorRect, 5, printIndex * fontHeight);
-					break;
-				}
-				if (printIndex >= menuLength)
-					break;
-				printIndex++;
-			}
-		}
+		printTextln(F("=>"), cursorRect, 5, printArrowPageIndex * fontHeight);
+
 		lastCursorIndex = printArrowIndex;
 	}
 }

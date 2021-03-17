@@ -36,6 +36,10 @@ void backMethod();
 
 const char PROGMEM TEXT_LED[] = "LED";
 const char PROGMEM TEXT_FAN[] = "FAN";
+const char PROGMEM TEXT_FAN2[] = "FAN2";
+const char PROGMEM TEXT_FAN3[] = "FAN3";
+const char PROGMEM TEXT_FAN4[] = "FAN4";
+const char PROGMEM TEXT_FAN5[] = "FAN5";
 
 MenuItem menuTree[MENU_TREE_SIZE] = {
 	{0,-1, TEXT_MAINMENU, NULL},
@@ -47,10 +51,10 @@ MenuItem menuTree[MENU_TREE_SIZE] = {
 			{-1,2, TEXT_ON, turnFANON},
 			{-1,2, TEXT_OFF, turnFANOFF},
 			{-1,2, TEXT_BACK, backMethod},
-		{3,0, TEXT_FAN, NULL},
-		{4,0, TEXT_FAN, NULL},
-		{5,0, TEXT_FAN, NULL},
-		{6,0, TEXT_FAN, NULL}
+		{3,0, TEXT_FAN2, NULL},
+		{4,0, TEXT_FAN3, NULL},
+		{5,0, TEXT_FAN4, NULL},
+		{6,0, TEXT_FAN5, NULL}
 };
 
 #pragma endregion
@@ -72,6 +76,12 @@ void setup()
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 
 	// Testing code:
+	//while (true)
+	//{
+	//	delay(500);
+	//	rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	//	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	//}
 	while (true)
 	{
 		delay(250);
