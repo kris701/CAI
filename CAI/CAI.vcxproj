@@ -106,7 +106,6 @@
   <ItemGroup>
     <ClInclude Include="CAI.h" />
     <ClInclude Include="Classes.h" />
-    <ClInclude Include="Macros.h" />
     <ClInclude Include="ModuleDrivers.h" />
     <ClInclude Include="RotaryButtonDriver.h" />
     <ClInclude Include="ScreenDriver.h" />

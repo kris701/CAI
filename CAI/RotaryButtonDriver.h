@@ -13,26 +13,18 @@
 	#include "Classes.h"
 #endif
 
-#ifndef _MACROS_h
-	#include "Macros.h"
-#endif
-
 class RotaryButtonDriver {
-	GET_PSET_Property(uint8_t, incrememtPin)
-	GET_PSET_Property(uint8_t, decrememtPin)
-	GET_PSET_Property(uint8_t, enterPin)
-
 private:
+	uint8_t incrememtPin;
+	uint8_t decrememtPin;
+	uint8_t enterPin;
 	void RotaryButtonDriver::incrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 	void RotaryButtonDriver::decrememtIndex(const uint8_t treeSize, uint8_t* menuIndex);
 
 public:
 	RotaryButtonDriver(uint8_t incrememtPin, uint8_t decrememtPin, void (*doEncodeFunc)(), void (*enterFunc)(), uint8_t enterPin)
+		: incrememtPin(incrememtPin), decrememtPin(decrememtPin), enterPin(enterPin)
 	{
-		SetincrememtPin(incrememtPin);
-		SetdecrememtPin(decrememtPin);
-		SetenterPin(enterPin);
-
 		pinMode(incrememtPin, INPUT_PULLUP);
 		pinMode(decrememtPin, INPUT_PULLUP);
 		pinMode(enterPin, INPUT_PULLUP);

@@ -3,7 +3,7 @@
 void RotaryButtonDriver::incrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	incrememtIndex(treeSize, menuIndex);
-	while (menuTree[*menuIndex].GetparentID() != menuTree[*currentMenuIndex].GetmenuID())
+	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
 	{
 		incrememtIndex(treeSize, menuIndex);
 	}
@@ -12,7 +12,7 @@ void RotaryButtonDriver::incrementMenuIndex(MenuItem menuTree[], const uint8_t t
 void RotaryButtonDriver::decrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	decrememtIndex(treeSize, menuIndex);
-	while (menuTree[*menuIndex].GetparentID() != menuTree[*currentMenuIndex].GetmenuID())
+	while (menuTree[*menuIndex].parentID != menuTree[*currentMenuIndex].menuID)
 	{
 		decrememtIndex(treeSize, menuIndex);
 	}

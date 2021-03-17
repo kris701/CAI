@@ -11,51 +11,34 @@
 	#include "CAI.h"
 #endif
 
-#ifndef _MACROS_h
-	#include "Macros.h"
-#endif
-
-struct Rectangle {
-	uint8_t x;
-	uint8_t y;
-	uint8_t width;
-	uint8_t height;
-};
-
 class ScreenDriver {
-	GET_PMSET_Property(uint8_t, screenWidth, 
-		{
-			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
-				CHECKVALUE(value == 0, screenWidth, ScreenDriver)
-			#endif
-			screenWidth = value;
-		}
-	)
-	GET_PMSET_Property(uint8_t, screenHeight,
-		{
-			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
-				CHECKVALUE(value == 0, screenHeight, ScreenDriver)
-			#endif
-			screenHeight = value;
-		}
-	)
-	GET_PSET_Property(uint8_t, currentX)
-	GET_PSET_Property(uint8_t, currentY)
-	GET_PSET_Property(uint8_t, fontHeight)
-	GET_PSET_Property(uint8_t, fontWidth)
-	GET_PSET_Property(uint8_t, leftMargin)
-	GET_PSET_Property(uint8_t, menuLength)
-	GET_PSET_Property(uint8_t, lastMenu)
-	GET_PSET_Property(uint8_t, lastCursorIndex)
-	GET_PSET_Property(uint8_t, lastMenuIndex)
-	GET_PSET_Property(Rectangle, lastRect)
-
 private:
+	struct Rectangle {
+		uint8_t x;
+		uint8_t y;
+		uint8_t width;
+		uint8_t height;
+	};
+
+	const uint8_t screenWidth = 128;
+	const uint8_t screenHeight = 64;
+	const uint8_t fontHeight = 8;
+	const uint8_t fontWidth = 5;
+	const uint8_t menuLength = 5;
+
 	const Rectangle headerRect = {0, 0, 127, 11};
 	const Rectangle cursorRect = { 0, 22, 19, 41 };
 	const Rectangle menuHeaderRect = { 20, 12, 97, 9 };
 	const Rectangle menuItemsRect = { 20, 22, 97, 41 };
 	const Rectangle pageArrowRect = { 118, 12, 9, 51 };
+
+	uint8_t currentX = 0;
+	uint8_t currentY = 0;
+
+	uint8_t lastMenu = 0;
+	uint8_t lastCursorIndex = 0;
+	uint8_t lastMenuIndex = 0;
+	Rectangle lastRect = {};
 
 	void ScreenDriver::setVCursor(uint8_t x = 0, uint8_t y = 0);
 	void ScreenDriver::printRect(Rectangle rect, uint8_t color);
@@ -73,15 +56,7 @@ private:
 	void ScreenDriver::setTextSettings(uint8_t x, uint8_t y, uint8_t frontColor = 1, uint8_t backColor = 0);
 	
 public:
-	ScreenDriver(){
-		SetscreenWidth(128);
-		SetscreenHeight(64);
-		SetfontHeight(8);
-		SetfontWidth(5);
-		SetleftMargin(5);
-		SetmenuLength(5);
-		SetlastMenuIndex(-1);
-	};
+	ScreenDriver(){};
 
 	void ScreenDriver::startDisplay();
 	void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex, bool isClick = false);

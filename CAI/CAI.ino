@@ -144,7 +144,7 @@ void EnterMenu()
 
 void backMethod()
 {
-	while (menuTree[menuIndex].GetmenuID() != menuTree[currentMenuIndex].GetparentID())
+	while (menuTree[menuIndex].menuID != menuTree[currentMenuIndex].parentID)
 	{
 		menuIndex++;
 		if (menuIndex > MENU_TREE_SIZE)

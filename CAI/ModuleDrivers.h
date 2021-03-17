@@ -13,25 +13,12 @@
 	#include "CAI.h"
 #endif
 
-#ifndef _MACROS_h
-	#include "Macros.h"
-#endif
-
 class ModuleDriver {
-	GET_PMSET_Property(uint8_t, pin,
-		{
-			#if SERIAL_PRINT == true && SERIAL_DEBUG == true
-				CHECKVALUE(!ISVALIDPIN(value), pin, ModuleDriver)
-			#endif
-			pin = value;
-		}
-	)
-
+private:
+	uint8_t pin;
 public:
 	ModuleDriver();
-	ModuleDriver(uint8_t pin) {
-		Setpin(pin);
-	};
+	ModuleDriver(uint8_t pin) : pin(pin) {};
 
 	void ModuleDriver::digitalSwitch(bool state);
 	void ModuleDriver::analogSwitch(uint8_t value);
@@ -39,15 +26,12 @@ public:
 
 class DualModuleDriver {
 private:
-	GET_PSET_Property(ModuleDriver, driverA)
-	GET_PSET_Property(ModuleDriver, driverB)
+	ModuleDriver driverA;
+	ModuleDriver driverB;
 
 public:
 	DualModuleDriver();
-	DualModuleDriver(uint8_t pinA, uint8_t pinB) {
-		SetdriverA(ModuleDriver(pinA));
-		SetdriverB(ModuleDriver(pinB));
-	};
+	DualModuleDriver(uint8_t pinA, uint8_t pinB) : driverA(ModuleDriver(pinA)), driverB(ModuleDriver(pinB)) {};
 
 	void DualModuleDriver::motorControllerDigital(bool valueA, bool valueB);
 	void DualModuleDriver::motorControllerAnalog(uint8_t valueA, uint8_t valueB);
