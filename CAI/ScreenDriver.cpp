@@ -39,30 +39,18 @@ void ScreenDriver::startDisplay() {
 
 void ScreenDriver::printHeader() {
 	display.clearDisplay();
-	setVCursor(GetleftMargin(), 2);
-	display.fillRect(0, 0, GetscreenWidth(), GetfontHeight() + 2, WHITE);
-	display.setTextColor(BLACK, TRANSPARENT);
-	printTextln(F("CAI 1.0"), true);
-	setVCursor(GetleftMargin(), GetfontHeight() + 7);
+	printRect(headerRect, WHITE);
+	printText(F("CAI 1.0"), headerRect, 5,2, BLACK, TRANSPARENT);
 }
 
-void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
-	printHeader();
-	uint8_t newPrintIndex = 0;
+void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex, bool isClick = false) {
 	uint8_t printIndex = 0;
 	uint8_t printMenuIndex = 0;
 	uint8_t printMenuPage = 0;
 	uint8_t printArrowIndex = 0;
 	uint8_t printArrowPage = 0;
-	uint8_t saveX;
-	uint8_t saveY;
 	for (uint8_t i = 0; i < treeSize; i++)
 	{
-		if (i == currentMenuIndex)
-		{
-			setVCursor(30, GetcurrentY());
-			printTextln(menuTree[i].Getname());
-		}
 		if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
 		{
 			if ((printIndex % GetmenuLength()) == 0)
@@ -80,97 +68,124 @@ void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_
 		}
 	}
 
-	saveX = GetcurrentX();
-	saveY = GetcurrentY();
-
-	if (printMenuPage > printArrowPage)
-		printTextxy(F("v"), GetscreenWidth() - (GetleftMargin() * 2), GetfontHeight() * 6);
-	if (printArrowPage > 1)
-		printTextxy(F("^"), GetscreenWidth() - (GetleftMargin() * 2), GetfontHeight() * 3);
-
-	SetcurrentX(saveX);
-	SetcurrentY(saveY);
-
-	setVCursor(GetleftMargin(), GetcurrentY() + 6);
-
-	for (uint8_t i = printMenuIndex; i < treeSize; i++)
+	if (isClick) 
 	{
-		if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
-		{
-			if (newPrintIndex >= GetmenuLength())
-				break;
-			newPrintIndex++;
-			if (i == printArrowIndex)
-			{
-				printText(F("=> "));
-			}
-			else
-			{
-				printText(F("   "));
-			}
-			printTextln(menuTree[i].Getname());
-		}
+		printMenuItems(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex, menuIndex);
+	}
+	else
+	{
+		printMenuHeader(menuTree, currentMenuIndex);
+		printPageArrows(currentMenuIndex, printArrowPage, printMenuPage);
+		printMenuItems(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex, -1);
+		printCursor(menuTree, treeSize, currentMenuIndex, printArrowPage, printMenuIndex, printArrowIndex);
+		SetlastMenuIndex(currentMenuIndex);
 	}
 }
 
-void ScreenDriver::printTextxy(const char* text, uint8_t x = 0, uint8_t y = 0, bool manualTextSettings = false)
+void ScreenDriver::printMenuHeader(MenuItem menuTree[], uint8_t currentMenuIndex) {
+	if (GetlastMenuIndex() != currentMenuIndex)
+	{
+		printRect(menuHeaderRect, BLACK);
+		printTextln(menuTree[currentMenuIndex].Getname(), menuHeaderRect, 10, 2);
+	}
+}
+
+void ScreenDriver::printPageArrows(uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuPage) {
+	if (GetlastMenu() != printArrowPage || GetlastMenuIndex() != currentMenuIndex)
+	{
+		printRect(pageArrowRect, BLACK);
+		if (printMenuPage > printArrowPage)
+			printText(F("v"), pageArrowRect, 0, 40);
+		if (printArrowPage > 1)
+			printText(F("^"), pageArrowRect, 0, 5);
+	}
+}
+
+void ScreenDriver::printMenuItems(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex, uint8_t menuIndex) {
+	if (GetlastMenu() != printArrowPage || GetlastMenuIndex() != currentMenuIndex)
+	{
+		printRect(menuItemsRect, BLACK);
+		int printIndex = 0;
+		for (uint8_t i = printMenuIndex; i < treeSize; i++)
+		{
+			if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
+			{
+				if (printIndex >= GetmenuLength())
+					break;
+				printIndex++;
+				if (i == menuIndex)
+				{
+					Rectangle coverText = { menuItemsRect.x, GetcurrentY(), menuItemsRect.width, GetfontHeight()};
+					printRect(coverText, WHITE);
+					printTextln(menuTree[i].Getname(), menuItemsRect, 0, 0, BLACK, TRANSPARENT);
+				}
+				else
+					printTextln(menuTree[i].Getname(), menuItemsRect);
+			}
+		}
+		SetlastMenu(printArrowPage);
+	}
+}
+
+void ScreenDriver::printCursor(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
+	if (GetlastCursorIndex() != printArrowIndex || GetlastMenuIndex() != currentMenuIndex)
+	{
+		printRect(cursorRect, BLACK);
+
+		int printIndex = 0;
+		for (uint8_t i = printMenuIndex; i < treeSize; i++)
+		{
+			if (menuTree[i].GetparentID() == menuTree[currentMenuIndex].GetmenuID())
+			{
+				if (i == printArrowIndex)
+				{
+					printTextln(F("=>"), cursorRect, 5, printIndex * GetfontHeight());
+					break;
+				}
+				if (printIndex >= GetmenuLength())
+					break;
+				printIndex++;
+			}
+		}
+		SetlastCursorIndex(printArrowIndex);
+	}
+}
+
+void ScreenDriver::printText(const __FlashStringHelper* text, Rectangle drawRect, uint8_t xOffset = 0, uint8_t yOffset = 0, uint8_t frontColor = WHITE, uint8_t backColor = BLACK)
 {
-	if (!manualTextSettings)
-		setTextSettings(x, y);
+	if (drawRect.x != GetlastRect().x || 
+		drawRect.y != GetlastRect().y || 
+		drawRect.width != GetlastRect().width || 
+		drawRect.height != GetlastRect().height)
+	{
+		setTextSettings(drawRect.x + xOffset, drawRect.y + yOffset, frontColor, backColor);
+		SetlastRect(drawRect);
+	}
+	else
+	{
+		if (xOffset != 0 || yOffset != 0)
+			setTextSettings(drawRect.x + xOffset, drawRect.y + yOffset, frontColor, backColor);
+	}
 	display.print(text);
 }
 
-void ScreenDriver::printTextxy(const __FlashStringHelper* text, uint8_t x = 0, uint8_t y = 0, bool manualTextSettings = false)
+void ScreenDriver::printTextln(const __FlashStringHelper* text, Rectangle drawRect, uint8_t xOffset = 0, uint8_t yOffset = 0, uint8_t frontColor = WHITE, uint8_t backColor = BLACK)
 {
-	const byte textLength = FSHlength(text);
-	memcpy_P(buffer, text, textLength + 1);
-	printTextxy(buffer, x, y, manualTextSettings);
+	printText(text, drawRect, xOffset, yOffset, frontColor, backColor);
+	setVCursor(drawRect.x, GetcurrentY() + GetfontHeight());
 }
 
-void ScreenDriver::printText(const char* text, bool manualTextSettings = false)
+void ScreenDriver::setTextSettings(uint8_t x, uint8_t y, uint8_t frontColor, uint8_t backColor)
 {
-	if (!manualTextSettings)
-		setTextSettings();
-	display.print(text);
-}
-
-void ScreenDriver::printText(const __FlashStringHelper* text, bool manualTextSettings = false)
-{
-	const byte textLength = FSHlength(text);
-	memcpy_P(buffer, text, textLength + 1);
-	printText(buffer, manualTextSettings);
-}
-
-void ScreenDriver::printTextln(const char* text, bool manualTextSettings = false)
-{
-	if (!manualTextSettings)
-		setTextSettings();
-	display.print(text);
-	setVCursor(GetleftMargin(), GetcurrentY() + GetfontHeight());
-}
-
-void ScreenDriver::printTextln(const __FlashStringHelper* text, bool manualTextSettings = false)
-{
-	const byte textLength = FSHlength(text);
-	memcpy_P(buffer, text, textLength + 1);
-	printTextln(buffer, manualTextSettings);
-}
-
-void ScreenDriver::setTextSettings(uint8_t x, uint8_t y)
-{
-	setTextSettings();
+	display.setTextColor(frontColor, backColor);
 	setVCursor(x, y);
 }
 
-void ScreenDriver::setTextSettings()
-{
-	display.setTextColor(WHITE, BLACK);
-}
-
 void ScreenDriver::printIntro() {
-	printTextxy(F("CAI Starting..."), 20, 32);
+	printText(F("CAI Starting..."), menuItemsRect);
 	delay(2000);
 	display.clearDisplay();
+	printHeader();
 }
 
 void ScreenDriver::setVCursor(uint8_t x = 0, uint8_t y = 0) {
@@ -179,11 +194,12 @@ void ScreenDriver::setVCursor(uint8_t x = 0, uint8_t y = 0) {
 	display.setCursor(x, y);
 }
 
-unsigned int ScreenDriver::FSHlength(const __FlashStringHelper* FSHinput) {
-	PGM_P FSHinputPointer = reinterpret_cast<PGM_P>(FSHinput);
-	unsigned int stringLength = 0;
-	while (pgm_read_byte(FSHinputPointer++)) {
-		stringLength++;
-	}
-	return stringLength;
+void ScreenDriver::printRect(Rectangle rect, uint8_t color) {
+	display.fillRect(rect.x, rect.y, rect.width, rect.height, color);
+}
+
+void ScreenDriver::printEnterMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
+	SetlastMenuIndex(-1);
+	printMenu(menuTree, treeSize, currentMenuIndex, menuIndex, true);
+	delay(50);
 }

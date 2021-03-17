@@ -18,15 +18,20 @@ void RotaryButtonDriver::decrementMenuIndex(MenuItem menuTree[], const uint8_t t
 	}
 }
 
-void RotaryButtonDriver::enterMenu(MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex)
+void RotaryButtonDriver::enterMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex)
 {
 	if (menuTree[*menuIndex].command == NULL)
 	{
 		*currentMenuIndex = *menuIndex;
-		(*menuIndex)++;
+		*menuIndex = 0;
+		incrementMenuIndex(menuTree, treeSize, currentMenuIndex, menuIndex);
 	}
 	else
+	{
 		menuTree[*menuIndex].command();
+		*menuIndex = 0;
+		incrementMenuIndex(menuTree, treeSize, currentMenuIndex, menuIndex);
+	}
 }
 
 void RotaryButtonDriver::incrememtIndex(uint8_t const treeSize, uint8_t* menuIndex)

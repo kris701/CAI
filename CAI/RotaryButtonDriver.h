@@ -44,7 +44,7 @@ public:
 	bool RotaryButtonDriver::isClockwise();
 	void RotaryButtonDriver::incrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 	void RotaryButtonDriver::decrementMenuIndex(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
-	void RotaryButtonDriver::enterMenu(MenuItem menuTree[], uint8_t* currentMenuIndex, uint8_t* menuIndex);
+	void RotaryButtonDriver::enterMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t* currentMenuIndex, uint8_t* menuIndex);
 };
 
 #endif
