@@ -11,27 +11,26 @@
 	#include "CAI.h"
 #endif
 
+struct Rectangle {
+	uint8_t x;
+	uint8_t y;
+	uint8_t width;
+	uint8_t height;
+};
+
+const uint8_t screenWidth = 128;
+const uint8_t screenHeight = 64;
+const uint8_t fontHeight = 8;
+const uint8_t fontWidth = 5;
+static const uint8_t menuLength = 5;
+const Rectangle headerRect = { 0, 0, 127, 11 };
+const Rectangle cursorRect = { 0, 22, 19, 41 };
+const Rectangle menuHeaderRect = { 20, 12, 97, 9 };
+const Rectangle menuItemsRect = { 20, 22, 97, 41 };
+const Rectangle pageArrowRect = { 118, 12, 9, 51 };
+
 class ScreenDriver {
 private:
-	struct Rectangle {
-		uint8_t x;
-		uint8_t y;
-		uint8_t width;
-		uint8_t height;
-	};
-
-	const uint8_t screenWidth = 128;
-	const uint8_t screenHeight = 64;
-	const uint8_t fontHeight = 8;
-	const uint8_t fontWidth = 5;
-	static const uint8_t menuLength = 5;
-
-	const Rectangle headerRect = {0, 0, 127, 11};
-	const Rectangle cursorRect = { 0, 22, 19, 41 };
-	const Rectangle menuHeaderRect = { 20, 12, 97, 9 };
-	const Rectangle menuItemsRect = { 20, 22, 97, 41 };
-	const Rectangle pageArrowRect = { 118, 12, 9, 51 };
-
 	uint8_t currentX = 0;
 	uint8_t currentY = 0;
 
