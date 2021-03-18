@@ -11,7 +11,7 @@ RotaryButtonDriver rotaryButtonDriver(Interface_InrementRotationPin, Interface_D
 uint8_t menuIndex = 1;
 uint8_t currentMenuIndex = 0;
 
-MenuItem menuTree[MENU_TREE_SIZE] = USE_TREE;
+const MenuItem menuTree[MENU_TREE_SIZE] = USE_TREE;
 
 #pragma endregion
 

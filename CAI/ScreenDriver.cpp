@@ -41,7 +41,7 @@ void ScreenDriver::printHeader() {
 	printText(F("CAI 1.0"), headerRect, 5,2, BLACK, TRANSPARENT);
 }
 
-void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex, bool isClick = false) {
+void ScreenDriver::printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex, bool isClick = false) {
 	uint8_t printIndex = 0;
 	uint8_t printMenuIndex = 0;
 	uint8_t printMenuPage = 0;
@@ -96,7 +96,7 @@ void ScreenDriver::printMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_
 	}
 }
 
-void ScreenDriver::printMenuHeader(MenuItem menuTree[], uint8_t currentMenuIndex) {
+void ScreenDriver::printMenuHeader(const MenuItem menuTree[], uint8_t currentMenuIndex) {
 	if (lastMenuIndex != currentMenuIndex)
 	{
 		printRect(menuHeaderRect, BLACK);
@@ -115,7 +115,7 @@ void ScreenDriver::printPageArrows(uint8_t currentMenuIndex, uint8_t printArrowP
 	}
 }
 
-void ScreenDriver::printMenuItems(MenuItem menuTree[], uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
+void ScreenDriver::printMenuItems(const MenuItem menuTree[], uint8_t currentMenuIndex, uint8_t printArrowPage, uint8_t printMenuIndex, uint8_t printArrowIndex) {
 	if (lastMenu != printArrowPage || lastMenuIndex != currentMenuIndex)
 	{
 		printRect(menuItemsRect, BLACK);
@@ -196,7 +196,7 @@ void ScreenDriver::printRect(Rectangle rect, uint8_t color) {
 	display.fillRect(rect.x, rect.y, rect.width, rect.height, color);
 }
 
-void ScreenDriver::printEnterMenu(MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
+void ScreenDriver::printEnterMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex) {
 	lastMenuIndex = -1;
 	printMenu(menuTree, treeSize, currentMenuIndex, menuIndex, true);
 	delay(50);
