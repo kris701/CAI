@@ -24,11 +24,12 @@
 #define ANALOG_B A6
 
 #define Interface_InrementRotationPin 2
-#define Interface_DecrementRotationPin 11
-#define Interface_EnterPin 3
+#define Interface_DecrementRotationPin 3
+#define Interface_EnterPin 11
 
 void backMethod();
-void DoEncode();
+void EncodeA();
+void EncodeB();
 void EnterMenu();
 
 #endif

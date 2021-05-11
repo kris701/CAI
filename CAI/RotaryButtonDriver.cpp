@@ -50,14 +50,50 @@ void RotaryButtonDriver::decrememtIndex(uint8_t const treeSize, uint8_t* menuInd
 		(*menuIndex)--;
 }
 
-bool RotaryButtonDriver::isClockwise()
+EncoderState RotaryButtonDriver::getEncoderState()
 {
-	if (digitalRead(incrememtPin) == digitalRead(decrememtPin))
+	if (pos == 128)
+		return None;
+	if (pos < 128)
 	{
-		return true;
+		pos = 128;
+		return CounterClockwise;
 	}
 	else
 	{
-		return false;
+		pos = 128;
+		return Clockwise;
 	}
+}
+
+void RotaryButtonDriver::EncodeFuncB()
+{
+	cli();
+	bool state = digitalRead(incrememtPin);
+	if (state == true && flagB) {
+		pos++;
+		flagB = 0;
+		flagA = 0;
+	}
+	else if (state == false) flagA = 1;
+	sei();
+}
+
+void RotaryButtonDriver::EncodeFuncA()
+{
+	cli();
+	bool state = digitalRead(decrememtPin);
+	if (state == true && flagA) {
+		pos--;
+		flagB = 0;
+		flagA = 0;
+	}
+	else if (state == false) flagB = 1;
+	sei();
+}
+
+void RotaryButtonDriver::CheckEnter()
+{
+	if (digitalRead(enterPin) == 0)
+		enterFuncPtr();
 }
