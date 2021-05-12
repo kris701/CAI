@@ -28,8 +28,8 @@
 #define Interface_EnterPin 11
 
 void backMethod();
-void EncodeA();
-void EncodeB();
+void IncrementFunc();
+void DecrementFunc();
 void EnterMenu();
 
 #endif

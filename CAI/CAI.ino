@@ -2,11 +2,13 @@
 #include "Systems.h"
 #include "ScreenDriver.h"
 #include "RotaryButtonDriver.h"
+#include "MenuController.h"
 
 #pragma region Setup
 
 ScreenDriver screenDriver = ScreenDriver();
-RotaryButtonDriver rotaryButtonDriver(Interface_InrementRotationPin, Interface_DecrementRotationPin, Interface_EnterPin, EncodeA, EncodeB, EnterMenu);
+RotaryButtonDriver rotaryButtonDriver(Interface_InrementRotationPin, Interface_DecrementRotationPin, Interface_EnterPin, IncrementFunc, DecrementFunc, EnterMenu);
+MenuController menuController = MenuController();
 
 uint8_t menuIndex = 1;
 uint8_t currentMenuIndex = 0;
@@ -33,47 +35,27 @@ void setup()
 }
 
 void loop() { 
-	rotaryButtonDriver.CheckEnter(); 
-	delay(100); 
+	rotaryButtonDriver.Tick(); 
+	delay(10); 
 }
 
-void EncodeA() {
-	rotaryButtonDriver.EncodeFuncA();
-	DoEncode();
-}
-
-void EncodeB() {
-	rotaryButtonDriver.EncodeFuncB();
-	DoEncode();
-}
-
-void DoEncode() {
-	EncoderState value = rotaryButtonDriver.getEncoderState();
-	if (value != None)
-	{
-		if (value == Clockwise)
-		{
-			rotaryButtonDriver.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
-			screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
-		}
-		if (value == CounterClockwise)
-		{
-			rotaryButtonDriver.decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
-			screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
-		}
-	}
-}
-
-void EnterMenu()
-{
-	// Interupt pin is floating rigth now, commented out for now
-	screenDriver.printEnterMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
-	rotaryButtonDriver.enterMenu(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+void IncrementFunc() {
+	menuController.incrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
 
-void backMethod()
-{
+void DecrementFunc() {
+	menuController.decrementMenuIndex(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+}
+
+void EnterMenu() {
+	screenDriver.printEnterMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	menuController.enterMenu(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
+	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+}
+
+void backMethod() {
 	while (menuTree[menuIndex].menuID != menuTree[currentMenuIndex].parentID)
 	{
 		menuIndex++;
