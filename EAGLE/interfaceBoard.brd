@@ -153,6 +153,8 @@
 <wire x1="76.18" y1="0" x2="76.18" y2="22.53" width="0" layer="20"/>
 <wire x1="76.18" y1="22.53" x2="0" y2="22.53" width="0" layer="20"/>
 <wire x1="0" y1="22.53" x2="0" y2="0" width="0" layer="20"/>
+<dimension x1="0" y1="24.13" x2="76.2" y2="24.13" x3="38.1" y3="29.21" textsize="1.778" layer="1"/>
+<dimension x1="-1.27" y1="22.86" x2="-1.27" y2="0" x3="-6.35" y3="11.43" textsize="1.778" layer="1"/>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
@@ -1572,9 +1574,9 @@ design rules under a new name.</description>
 <attribute name="POPULARITY" value="3" x="24.13" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="21.7" y="16.2" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="PWR" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-02-PACKAGE-LONG-PAD" value="JST-XH-02-PIN-LONG-PAD" x="53.34" y="10.16" smashed="yes" rot="R90">
-<attribute name="NAME" x="55.38" y="5.905" size="1.016" layer="25" ratio="10" rot="R180"/>
-<attribute name="VALUE" x="49.4475" y="6.8575" size="1.016" layer="27" ratio="10" rot="R90"/>
+<element name="PWR" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-02-PACKAGE-LONG-PAD" value="JST-XH-02-PIN-LONG-PAD" x="53.34" y="7.62" smashed="yes" rot="R270">
+<attribute name="NAME" x="51.3" y="11.875" size="1.016" layer="25" ratio="10"/>
+<attribute name="VALUE" x="57.2325" y="10.9225" size="1.016" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="DATA" library="Rembrandt Electronics - JST XH Connectors v1-0" package="JST-XH-05-PACKAGE-LONG-PAD" value="JST-XH-05-PIN-LONG-PAD" x="35.56" y="12.7" smashed="yes" rot="R90">
 <attribute name="NAME" x="37.7" y="4.645" size="1.016" layer="25" ratio="10" rot="R180"/>
@@ -1590,29 +1592,29 @@ design rules under a new name.</description>
 <contactref element="PWR" pad="2"/>
 <contactref element="SW1" pad="C"/>
 <contactref element="SW1" pad="E"/>
-<contactref element="SCREEN" pad="2"/>
 <polygon width="0.1524" layer="16">
 <vertex x="0" y="22.86"/>
 <vertex x="76.2" y="22.86"/>
 <vertex x="76.2" y="0"/>
 <vertex x="0" y="0"/>
 </polygon>
+<contactref element="SCREEN" pad="1"/>
 </signal>
 <signal name="+5V">
 <contactref element="PWR" pad="1"/>
 <contactref element="R1" pad="2"/>
 <contactref element="R2" pad="1"/>
 <contactref element="R3" pad="2"/>
-<contactref element="SCREEN" pad="1"/>
-<wire x1="68.58" y1="8.89" x2="68.3895" y2="9.0805" width="0.635" layer="16"/>
-<wire x1="68.3895" y1="9.0805" x2="53.5305" y2="9.0805" width="0.635" layer="16"/>
-<wire x1="53.34" y1="8.89" x2="53.5305" y2="9.0805" width="0.635" layer="16"/>
 <wire x1="24.13" y1="2.54" x2="2.54" y2="2.54" width="0.635" layer="16"/>
 <wire x1="27.94" y1="7.62" x2="27.94" y2="4.826" width="0.635" layer="16"/>
-<wire x1="49.276" y1="4.826" x2="53.34" y2="8.89" width="0.635" layer="16"/>
-<wire x1="27.94" y1="4.826" x2="49.276" y2="4.826" width="0.635" layer="16"/>
+<wire x1="50.8" y1="8.89" x2="53.34" y2="8.89" width="0.635" layer="16"/>
+<wire x1="50.8" y1="8.89" x2="46.736" y2="4.826" width="0.635" layer="16"/>
+<wire x1="27.94" y1="4.826" x2="46.736" y2="4.826" width="0.635" layer="16"/>
 <wire x1="24.13" y1="2.54" x2="26.416" y2="4.826" width="0.635" layer="16"/>
 <wire x1="26.416" y1="4.826" x2="27.94" y2="4.826" width="0.635" layer="16"/>
+<contactref element="SCREEN" pad="2"/>
+<wire x1="53.34" y1="8.89" x2="55.88" y2="11.43" width="0.635" layer="16"/>
+<wire x1="55.88" y1="11.43" x2="68.58" y2="11.43" width="0.635" layer="16"/>
 </signal>
 <signal name="CLK">
 <contactref element="DATA" pad="5"/>

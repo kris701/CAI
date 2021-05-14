@@ -5228,11 +5228,11 @@ Number of pins: &lt;b&gt;4&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 <instance part="GND3" gate="1" x="40.64" y="33.02" smashed="yes">
 <attribute name="VALUE" x="38.1" y="30.48" size="1.778" layer="96"/>
 </instance>
-<instance part="GND4" gate="1" x="38.1" y="78.74" smashed="yes">
-<attribute name="VALUE" x="35.56" y="76.2" size="1.778" layer="96"/>
+<instance part="GND4" gate="1" x="35.56" y="78.74" smashed="yes">
+<attribute name="VALUE" x="33.02" y="76.2" size="1.778" layer="96"/>
 </instance>
-<instance part="P+5" gate="1" x="35.56" y="81.28" smashed="yes" rot="R180">
-<attribute name="VALUE" x="38.1" y="86.36" size="1.778" layer="96" rot="R270"/>
+<instance part="P+5" gate="1" x="38.1" y="81.28" smashed="yes" rot="R180">
+<attribute name="VALUE" x="40.64" y="86.36" size="1.778" layer="96" rot="R270"/>
 </instance>
 </instances>
 <busses>
@@ -5256,9 +5256,9 @@ Number of pins: &lt;b&gt;4&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 <wire x1="40.64" y1="38.1" x2="40.64" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="SCREEN" gate="-2" pin="S"/>
+<pinref part="SCREEN" gate="-1" pin="S"/>
 <pinref part="GND4" gate="1" pin="GND"/>
-<wire x1="38.1" y1="88.9" x2="38.1" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="88.9" x2="35.56" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -5284,9 +5284,9 @@ Number of pins: &lt;b&gt;4&lt;/b&gt;&lt;b&gt;&lt;P&gt;
 <wire x1="25.4" y1="53.34" x2="27.94" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="SCREEN" gate="-1" pin="S"/>
 <pinref part="P+5" gate="1" pin="+5V"/>
-<wire x1="35.56" y1="88.9" x2="35.56" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="SCREEN" gate="-2" pin="S"/>
+<wire x1="38.1" y1="83.82" x2="38.1" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CLK" class="0">
