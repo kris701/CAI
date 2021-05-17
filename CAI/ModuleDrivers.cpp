@@ -27,7 +27,7 @@ void DualModuleDriver::motorControllerDigital(bool valueA, bool valueB) {
 	Serial.println(F("Digital Motor Switch"));
 #endif
 	driverA.digitalSwitch(valueA);
-	driverA.digitalSwitch(valueB);
+	driverB.digitalSwitch(valueB);
 }
 
 void DualModuleDriver::motorControllerAnalog(uint8_t valueA, uint8_t valueB) {
@@ -35,5 +35,5 @@ void DualModuleDriver::motorControllerAnalog(uint8_t valueA, uint8_t valueB) {
 	Serial.println(F("Analog Motor Switch"));
 #endif
 	driverA.analogSwitch(valueA);
-	driverA.analogSwitch(valueB);
+	driverB.analogSwitch(valueB);
 }

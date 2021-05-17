@@ -727,8 +727,8 @@ design rules under a new name.</description>
 <wire x1="11.43" y1="35.56" x2="11.43" y2="32.98" width="0.635" layer="16"/>
 <wire x1="19.01" y1="25.4" x2="19.01" y2="18.1845" width="0.635" layer="16"/>
 <wire x1="19.01" y1="18.1845" x2="18.2245" y2="17.399" width="0.635" layer="16"/>
-<wire x1="54.61" y1="16.51" x2="54.61" y2="7.62" width="0" layer="19" extent="1-1"/>
 <contactref element="ANALOG_A" pad="2"/>
+<wire x1="54.61" y1="16.51" x2="54.61" y2="7.62" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND">
 <contactref element="IC1" pad="2"/>
