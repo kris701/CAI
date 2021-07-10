@@ -62,6 +62,7 @@ public:
 	void ScreenDriver::printMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex, bool isClick = false);
 	void ScreenDriver::printEnterMenu(const MenuItem menuTree[], const uint8_t treeSize, uint8_t currentMenuIndex, uint8_t menuIndex);
 	void ScreenDriver::printIntro();
+	void ScreenDriver::printLoading();
 };
 
 #endif

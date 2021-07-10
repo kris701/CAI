@@ -186,6 +186,13 @@ void ScreenDriver::printIntro() {
 	printHeader();
 }
 
+void ScreenDriver::printLoading() {
+	printRect(menuItemsRect, BLACK);
+	printRect(pageArrowRect, BLACK);
+	printRect(cursorRect, BLACK);
+	printText(F("Processing..."), menuItemsRect, 0, 10);
+}
+
 void ScreenDriver::setVCursor(uint8_t x = 0, uint8_t y = 0) {
 	currentX = x;
 	currentY = y;

@@ -51,6 +51,8 @@ void DecrementFunc() {
 
 void EnterMenu() {
 	screenDriver.printEnterMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
+	if (menuTree[menuIndex].command != NULL)
+		screenDriver.printLoading();
 	menuController.enterMenu(menuTree, MENU_TREE_SIZE, &currentMenuIndex, &menuIndex);
 	screenDriver.printMenu(menuTree, MENU_TREE_SIZE, currentMenuIndex, menuIndex);
 }
