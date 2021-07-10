@@ -1,8 +1,8 @@
 #include "Systems.h"
 #include "ModuleDrivers.h"
 
-ModuleDriver DigitalADriver(DIGITAL_A);
-ModuleDriver DigitalBDriver(DIGITAL_C);
+ModuleDriver DigitalADriver(DIGITAL_C);
+ModuleDriver DigitalBDriver(DIGITAL_B);
 
 DualModuleDriver HeadbedDriver(MOTOR_A_1, MOTOR_A_2);
 DualModuleDriver ToolheadDriver(MOTOR_B_1, MOTOR_B_2);

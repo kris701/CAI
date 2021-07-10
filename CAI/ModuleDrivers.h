@@ -17,7 +17,9 @@ class ModuleDriver {
 private:
 	uint8_t pin;
 public:
-	ModuleDriver(uint8_t pin) : pin(pin) {};
+	ModuleDriver(uint8_t pin) : pin(pin) {
+		pinMode(pin, OUTPUT);
+	};
 
 	void ModuleDriver::digitalSwitch(bool state);
 	void ModuleDriver::analogSwitch(uint8_t value);
