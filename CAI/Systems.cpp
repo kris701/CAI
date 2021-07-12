@@ -18,7 +18,6 @@ void base3DPrint()
 void baseCNC()
 {
 	turnLEDON();
-	turnFANON();
 	screwHeadbed();
 	screwToolhead();
 }
@@ -45,28 +44,28 @@ void turnFANOFF()
 
 void screwHeadbed()
 {
-	HeadbedDriver.motorControllerDigital(1, 0);
+	HeadbedDriver.motorControllerDigital(0, 1);
 	delay(3000);
 	HeadbedDriver.motorControllerDigital(0, 0);
 }
 
 void unScrewHeadbed()
 {
-	HeadbedDriver.motorControllerDigital(0, 1);
+	HeadbedDriver.motorControllerDigital(1, 0);
 	delay(3000);
 	HeadbedDriver.motorControllerDigital(0, 0);
 }
 
 void screwToolhead()
 {
-	ToolheadDriver.motorControllerDigital(1, 0);
+	ToolheadDriver.motorControllerDigital(0, 1);
 	delay(3000);
 	ToolheadDriver.motorControllerDigital(0, 0);
 }
 
 void unScrewToolhead()
 {
-	ToolheadDriver.motorControllerDigital(0, 1);
+	ToolheadDriver.motorControllerDigital(1, 0);
 	delay(3000);
 	ToolheadDriver.motorControllerDigital(0, 0);
 }
