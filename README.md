@@ -17,7 +17,7 @@ Easy to modify menu system, with a rotary push button control.
 
 ![menuWorks](https://user-images.githubusercontent.com/22596587/125480069-7fc0ad11-d0eb-4a54-aad5-5a36af12975e.gif)
 
-### Auto-Setuo
+### Auto-Setup
 Single menu item, to setup all thats needed for CNC or 3D print.
 Consisting of tightening screws, turning on LED and for 3D printing, turn on the nozzle blower.
 
