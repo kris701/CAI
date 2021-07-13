@@ -1,6 +1,8 @@
 #include "Systems.h"
 #include "ModuleDrivers.h"
 
+#define screwUnscrewTime 5000
+
 ModuleDriver DigitalADriver(DIGITAL_C);
 ModuleDriver DigitalBDriver(DIGITAL_B);
 
@@ -45,28 +47,28 @@ void turnFANOFF()
 void screwHeadbed()
 {
 	HeadbedDriver.motorControllerDigital(0, 1);
-	delay(3000);
+	delay(screwUnscrewTime);
 	HeadbedDriver.motorControllerDigital(0, 0);
 }
 
 void unScrewHeadbed()
 {
 	HeadbedDriver.motorControllerDigital(1, 0);
-	delay(3000);
+	delay(screwUnscrewTime);
 	HeadbedDriver.motorControllerDigital(0, 0);
 }
 
 void screwToolhead()
 {
 	ToolheadDriver.motorControllerDigital(0, 1);
-	delay(3000);
+	delay(screwUnscrewTime);
 	ToolheadDriver.motorControllerDigital(0, 0);
 }
 
 void unScrewToolhead()
 {
 	ToolheadDriver.motorControllerDigital(1, 0);
-	delay(3000);
+	delay(screwUnscrewTime);
 	ToolheadDriver.motorControllerDigital(0, 0);
 }
 
