@@ -1,6 +1,8 @@
+![banner](https://user-images.githubusercontent.com/22596587/125483308-ca1233e7-7602-4dae-a29e-acbe8510aeb2.png)
 # Centralised Auxiliary Interface (CAI)
 
-A project about centralizing a lot of the auxiliary systems for my 3D printer
+A project about centralizing a lot of the auxiliary systems for my 3D printer.
+As well as add some new systems, like auto-screws, that makes the operation of the printer a lot easier!
 
 ### Auto-Screws
 Automatic screws to take heatbed and toolhead off and on, to make it significantly easier to switch between CNC, Laser engraver and 3D-printer!
