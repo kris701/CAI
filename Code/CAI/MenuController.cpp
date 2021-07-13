@@ -23,14 +23,14 @@ void MenuController::enterMenu(const MenuItem menuTree[], const uint8_t treeSize
 	if (menuTree[*menuIndex].command == NULL)
 	{
 		*currentMenuIndex = *menuIndex;
-		*menuIndex = 0;
+		//*menuIndex = 0;
 		incrementMenuIndex(menuTree, treeSize, currentMenuIndex, menuIndex);
 	}
 	else
 	{
 		menuTree[*menuIndex].command();
-		*menuIndex = 0;
-		incrementMenuIndex(menuTree, treeSize, currentMenuIndex, menuIndex);
+		//*menuIndex = 0;
+		//incrementMenuIndex(menuTree, treeSize, currentMenuIndex, menuIndex);
 	}
 }
 

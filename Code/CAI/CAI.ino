@@ -58,16 +58,22 @@ void EnterMenu() {
 }
 
 void backMethod() {
+  int jumpCursor = 0;
+  while (menuTree[jumpCursor].menuID != menuTree[menuIndex].parentID)
+  {
+    jumpCursor++;
+    if (jumpCursor > MENU_TREE_SIZE)
+      jumpCursor = 0;
+  }
+  
 	while (menuTree[menuIndex].menuID != menuTree[currentMenuIndex].parentID)
-	{
-		menuIndex++;
-		if (menuIndex > MENU_TREE_SIZE)
-			menuIndex = 0;
-	}
-
-	currentMenuIndex = menuIndex;
-	menuIndex++;
+  {
+    menuIndex++;
+    if (menuIndex > MENU_TREE_SIZE)
+      menuIndex = 0;
+  }
+  currentMenuIndex = menuIndex;
+  menuIndex = jumpCursor;
 }
 
 #pragma endregion
-
