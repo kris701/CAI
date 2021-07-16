@@ -1,6 +1,8 @@
 #include "Systems.h"
 #include "ModuleDrivers.h"
 
+void motorDriver(DualModuleDriver driver, int dirA, int dirB, int holdFor);
+
 #define screwUnscrewTime 5000
 
 ModuleDriver DigitalADriver(DIGITAL_C);
@@ -44,32 +46,44 @@ void turnFANOFF()
 	DigitalBDriver.digitalSwitch(0);
 }
 
-void screwHeadbed()
-{
-	HeadbedDriver.motorControllerDigital(0, 1);
-	delay(screwUnscrewTime);
-	HeadbedDriver.motorControllerDigital(0, 0);
+void screwHeadbed() {
+	motorDriver(HeadbedDriver, 0, 1, screwUnscrewTime);
 }
 
-void unScrewHeadbed()
-{
-	HeadbedDriver.motorControllerDigital(1, 0);
-	delay(screwUnscrewTime);
-	HeadbedDriver.motorControllerDigital(0, 0);
+void unScrewHeadbed() {
+	motorDriver(HeadbedDriver, 1, 0, screwUnscrewTime);
 }
 
-void screwToolhead()
-{
-	ToolheadDriver.motorControllerDigital(0, 1);
-	delay(screwUnscrewTime);
-	ToolheadDriver.motorControllerDigital(0, 0);
+void screwToolhead() {
+	motorDriver(ToolheadDriver, 0, 1, screwUnscrewTime);
 }
 
-void unScrewToolhead()
-{
-	ToolheadDriver.motorControllerDigital(1, 0);
-	delay(screwUnscrewTime);
-	ToolheadDriver.motorControllerDigital(0, 0);
+void unScrewToolhead() {
+	motorDriver(ToolheadDriver, 1, 0 , screwUnscrewTime);
+}
+
+void holdScrewToolhead() {
+	bool continueLoop = true;
+	while (continueLoop) {
+		motorDriver(ToolheadDriver, 0, 1, 500);
+		for (int i = 0; i < 100; i++)
+		{
+			if (digitalRead(Interface_EnterPin) == 0) {
+				continueLoop = false;
+				break;
+			}
+			delay(100);
+		}
+	}
+}
+
+
+void motorDriver(DualModuleDriver driver, int dirA, int dirB, int holdFor) {
+	driver.motorControllerDigital(dirA, dirB);
+	if (holdFor != 0) {
+		delay(holdFor);
+		driver.motorControllerDigital(0, 0);
+	}
 }
 
 void title() {}

@@ -25,6 +25,7 @@ void screwHeadbed();
 void unScrewHeadbed();
 void screwToolhead();
 void unScrewToolhead();
+void holdScrewToolhead();
 void base3DPrint();
 void baseCNC();
 void title();
@@ -35,6 +36,7 @@ const char PROGMEM TEXT_OFF[] = "Off";
 const char PROGMEM TEXT_BACK[] = "Back";
 const char PROGMEM TEXT_SCREW[] = "SCREW";
 const char PROGMEM TEXT_UNSCREW[] = "UNSCREW";
+const char PROGMEM TEXT_HOLD[] = "HOLD";
 
 const char PROGMEM TEXT_AUTO[] = " - AUTO";
 const char PROGMEM TEXT_MANUAL[] = " - MANUAL";
@@ -47,7 +49,7 @@ const char PROGMEM TEXT_TOOLHEAD[] = "TOOLHEAD";
 const char PROGMEM TEXT_BASE3D[] = "BASE 3D";
 const char PROGMEM TEXT_BASECNC[] = "BASE CNC";
 
-#define MENU_TREE_SIZE 21
+#define MENU_TREE_SIZE 22
 #define USE_TREE {									\
 	{0, -1, TEXT_MAINMENU, NULL},					\
 		{ 1,0, TEXT_AUTO, title },					\
@@ -69,6 +71,7 @@ const char PROGMEM TEXT_BASECNC[] = "BASE CNC";
 		{ 8,0, TEXT_TOOLHEAD, NULL },				\
 			{ -1,8, TEXT_SCREW, screwToolhead },	\
 			{ -1,8, TEXT_UNSCREW, unScrewToolhead },\
+			{ -1,8, TEXT_HOLD, holdScrewToolhead },	\
 			{ -1,8, TEXT_BACK, backMethod },		\
 }													\
 
