@@ -1,7 +1,8 @@
 #include "Systems.h"
 #include "ModuleDrivers.h"
 
-void motorDriver(DualModuleDriver driver, int dirA, int dirB, int holdFor);
+void motorDriver(DualModuleDriver driver, bool dirA, bool dirB, int holdFor);
+void motorDriverAnalog(DualModuleDriver driver, int dirA, int dirB, int holdFor);
 
 #define screwUnscrewTime 5000
 
@@ -65,7 +66,7 @@ void unScrewToolhead() {
 void holdScrewToolhead() {
 	bool continueLoop = true;
 	while (continueLoop) {
-		motorDriver(ToolheadDriver, 0, 1, 500);
+		motorDriverAnalog(ToolheadDriver, 0, 128, 500);
 		for (int i = 0; i < 100; i++)
 		{
 			if (digitalRead(Interface_EnterPin) == 0) {
@@ -78,8 +79,16 @@ void holdScrewToolhead() {
 }
 
 
-void motorDriver(DualModuleDriver driver, int dirA, int dirB, int holdFor) {
+void motorDriver(DualModuleDriver driver, bool dirA, bool dirB, int holdFor) {
 	driver.motorControllerDigital(dirA, dirB);
+	if (holdFor != 0) {
+		delay(holdFor);
+		driver.motorControllerDigital(0, 0);
+	}
+}
+
+void motorDriverAnalog(DualModuleDriver driver, int dirA, int dirB, int holdFor) {
+	driver.motorControllerAnalog(dirA, dirB);
 	if (holdFor != 0) {
 		delay(holdFor);
 		driver.motorControllerDigital(0, 0);
