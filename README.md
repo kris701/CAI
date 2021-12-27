@@ -3,6 +3,7 @@
 
 A project about centralizing a lot of the auxiliary systems for my 3D printer.
 As well as add some new systems, like auto-screws, that makes the operation of the printer a lot easier!
+It is also designed to be mounted on my [toolhead extension project](https://github.com/kris701/SnapMaker-Toolhead-Extensions).
 
 ### Auto-Screws
 Automatic screws to take heatbed and toolhead off and on, to make it significantly easier to switch between CNC, Laser engraver and 3D-printer!
